@@ -1,0 +1,111 @@
+/*
+	HTML5 Reset :: style.css
+	----------------------------------------------------------
+	We have learned much from/been inspired by/taken code where offered from:
+
+	Eric Meyer					:: http://meyerweb.com
+	HTML5 Doctor				:: http://html5doctor.com
+	and the HTML5 Boilerplate	:: http://html5boilerplate.com
+
+-------------------------------------------------------------------------------*/
+
+html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, menu, nav, section, time, mark, audio, video, details, summary {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font-weight: normal;
+	font-style: normal;
+	vertical-align: baseline;
+	background-color: transparent;
+}
+
+article, aside, figure, footer, header, nav, section, details, summary {display: block;}
+
+/* Handle box-sizing while better addressing child elements:
+   http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
+html {
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+
+ul, ol {list-style: none;}
+
+blockquote, q {quotes: none;}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {content: ''; content: none;}
+
+a {margin: 0; padding: 0; font-size: 100%; vertical-align: baseline; background-color: transparent;}
+
+del {text-decoration: line-through;}
+
+abbr[title], dfn[title] {border-bottom: 1px dotted #000; cursor: help;}
+
+/* tables still need cellspacing="0" in the markup */
+table { font-size: inherit; font: 100%; border-collapse: separate; border-spacing: 0;}
+
+hr {display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0;}
+
+input, select {vertical-align: middle;}
+
+pre {
+    white-space: pre; /* CSS2 */
+    white-space: pre-wrap; /* CSS 2.1 */
+    white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
+    word-wrap: break-word; /* IE */
+}
+
+input[type="radio"] {vertical-align: text-bottom;}
+input[type="checkbox"] {vertical-align: bottom;}
+
+select, input, textarea {font: 99% sans-serif;}
+
+small {font-size: 85%;}
+
+strong {font-weight: bold;}
+
+/* Make sure sup and sub don't mess with your line-heights http://gist.github.com/413930 */
+sub, sup {font-size: 75%; line-height: 0; position: relative;}
+sup {top: -0.5em;}
+sub {bottom: -0.25em;}
+
+/* standardize any monospaced elements */
+pre, code, kbd, samp {font-family: monospace, sans-serif;}
+
+/* Webkit browsers add a 2px margin outside the chrome of form elements */
+button, input, select, textarea {margin: 0;}
+
+
+
+* { padding:0; margin: 0; box-sizing: border-box; background-repeat: no-repeat; background-position: 0 0; background-size: 100% auto;}
+html, body { height: 100%; background: #222; color: #fff; font-size: 12px; font-family: arial;  -webkit-user-select: none; -webkit-touch-callout: none;}
+section { position: absolute; top: 0; left: 0; width: 100%; min-height: 100%; overflow: hidden; display: none;}
+img { max-width: 100%;}
+.wrapper { position: relative; width: 100%; height: 100%;}
+
+
+/*body.nowx .s2 ul { padding-bottom: 25%;}*/
+
+
+
+/***** assetloading *****/
+.asset { position: absolute; z-index: 99; top: 0; bottom: 0; width: 100%;}
+.asset ._list { display: none; }
+.asset ._load { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; color: #aaa; background: #000 url(../img/load2.jpg) no-repeat 50% 50% / 100% auto;  }
+.asset ._load * { position: absolute; top: 50%; left: 50%; width: 100%;}
+.asset ._load center { padding-bottom: 100%; left: 0; margin-top: -52.5%;}
+.asset ._load sub { -webkit-animation: ani-load1 3s linear infinite both; width: 150%; padding-bottom: 150%; margin: -75% 0 0 -75%; background-image: url(../img/load3.png);}
+.asset ._load sup { width: 28.125%; padding-bottom: 28.125%; margin: -14.0625% 0 0 -14.0625%; background-image: url(../img/load4.png); }
+.asset ._load em { width: 20%; padding-bottom: 20%; margin: -10% 0 0 -10%; overflow: hidden; border-radius: 100%; background-size: 100% 100%;}
+.asset ._load var { left: 0; text-align: center; font-size: 1.2em; color: #fff; margin-top: 23.5%;}
+@-webkit-keyframes ani-load1{
+    0%{ -webkit-transform: rotate(0deg); }
+    100%{ -webkit-transform: rotate(360deg); }
+}
