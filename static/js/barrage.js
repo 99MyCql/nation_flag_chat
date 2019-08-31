@@ -33,10 +33,31 @@ function getDM() {
 	});
 }
 
-function sendDM(msg) {
-	
+// 发送弹幕
+function sendDM(userinfo, input_msg) {
+	console.log("发送弹幕")
+	let item = {
+		username: userinfo.nickname,
+		avatar_url: userinfo.headimgurl,
+		sex: userinfo.sex,
+		content: input_msg,
+		bottom: 200,
+		speed: 0.15,
+	}
+	$.ajax({
+		type: 'POST',
+		url: '/add',
+		data: item,
+		success: function(data){
+			console.log(data);
+			createDM(item, 0);
+		},
+		error: function(data){
+		}
+	});
 }
 
+// 创建弹幕
 function createDM(item, i) {
 	// avatar头像标签
 	var avatar = document.createElement('img')

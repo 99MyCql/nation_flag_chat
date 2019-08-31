@@ -54,7 +54,15 @@ $(function(){
     resizes[j].style.fontSize=parseInt(resizes[j].style.fontSize)*scaleW+'px';
     resizes[j].style.lineHeight=parseInt(resizes[j].style.lineHeight)*scaleH+'px';
   }
-  
+
+  /***** 获取用户信息 *****/
+  var userinfo = $('#userinfo').text();
+  console.log(userinfo);
+  userinfo = userinfo.replace(/'/g, '"');
+  userinfo = JSON.parse(userinfo);
+  userinfo['headimgurl'] = userinfo.headimgurl.replace(/\\\//g, '/');
+  console.log(userinfo);
+
   /***** 获取URL参数 *****/
   function GetQueryString(name) {
      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i");
@@ -188,7 +196,10 @@ $(function(){
     if(li.length==0){ app.useSystemScroll=true; return; }
 
     if (li.attr('href') == 'wait') return; // 如果碰到停止标签，则退出
-    if (li.attr('href') == 'bless') getDM(); // 获取弹幕
+    if (li.attr('href') == 'bless') {
+      $("#input_msg").attr('placeholder', '留言祝福')
+      getDM(); // 获取弹幕
+    }
 
     li.css({display:'block', opacity:0});
     scrollBottom(10, function(){
@@ -270,16 +281,22 @@ $(function(){
     console.log(msg);
     if (msg == '') return; // 空输入无效
     $("#input_msg").val(''); // 清空输入
+
+    // 如果是留言祝福
+    if ($(".s2 li:visible:last").attr('href') == 'bless') {
+      sendDM(userinfo, msg);
+      $(".s2 li:hidden[href='wait']:first").remove();
+      playPage2();
+      return;
+    }
+
+    // 如果是回答问题
     $(".s2 li:visible:last").after(`
       <li delay="1.5" class="my">
         <h2 class="user0"></h2>
         <p>${msg}</p>
       </li>
     `);
-    if ($(".s2 li:visible:last").attr('href') == 'bless') {
-      
-    }
-    // 如果是问题
     switch ($(".s2 li:visible[href='question']:last").attr('id')) {
       case 'question1':
         $(".s2 li:hidden:first").after(question1(msg));
