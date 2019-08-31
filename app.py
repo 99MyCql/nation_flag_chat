@@ -57,12 +57,13 @@ def home():
 def add_bar():
     # 获取前端数据
     username = request.form.get('username')
+    sex = request.form.get('sex')
     avatar_url = request.form.get('avatar_url')
     content = request.form.get('content')
     like_count = 0
 
     # 增加
-    bar = Barrage(username=username, avatar_url=avatar_url, content=content, like_count=like_count)
+    bar = Barrage(username=username, sex=sex, avatar_url=avatar_url, content=content, like_count=like_count)
     db.session.add(bar)
     db.session.commit()
     return jsonify({
@@ -78,6 +79,7 @@ def list_page(page=1):
     for bar in bar_list:
         bar_list_schema.append({
             'username': bar.username,
+            'sex': bar.sex,
             'avatar_url': bar.avatar_url,
             'content': bar.content,
             'like_count': bar.like_count
@@ -85,11 +87,7 @@ def list_page(page=1):
     if len(bar_list) == 0:
         print("未查询到！")
     else:
-        for i in range(len(bar_list)):
-            print(bar_list[i].username,
-                      bar_list[i].avatar_url,
-                      bar_list[i].content,
-                      bar_list[i].like_count)
+        print(bar_list_schema)
     return jsonify({
         'status_code': config.SUCCESS,
         'msg': 'success',

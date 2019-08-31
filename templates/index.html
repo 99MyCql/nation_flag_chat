@@ -6,25 +6,24 @@
 	<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<!--meta name="viewport" content="width=device-width,initial-scale=1" /-->
-	<!--上面一行代码是调节屏幕适应的，百度的，貌似没用 -->
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="format-detection" content="telephone=no, email=no">
 	<meta name="description" content="">
-	<!-- 这次党代会的主要任务是：全面总结校第十五次党代会以来六年的工作和取得的经验，科学谋划学校未来五年的发展。 -->
-	<title>我是升旗手</title>
+	<title>十一升旗手</title>
 	
-	<link rel="stylesheet" type="text/css" href="css/reset.css">
-	<link rel="shortcut icon" type="image/x-icon" href="img/logo.ico">
-	<link rel="stylesheet" type="text/css" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
-	<link type="text/css" rel="stylesheet" href="css/main.css">
-	<script type="text/javascript" src="js/loader.js"></script>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/reset.css') }}">
+	<link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='img/logo.ico') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/barrage.css') }}">
+	<script type="text/javascript" src="{{ url_for('static', filename='js/loader.js') }}"></script>
 	<script type="text/javascript">
 		var app = { useSystemScroll: false };
 		
 		//此处修改用户头像
-		headimgurl = "<?php echo $headimgurl;?>";
+		headimgurl = "{{ userinfo.headimgurl }}";
 		
-		app._load_head = headimgurl == "undefined" ? 'img/user0.jpg' : headimgurl;
+		app._load_head = headimgurl == "undefined" ? "{{ url_for('static', filename='img/user0.jpg') }}" : headimgurl;
 		console.log(app._load_head)
 		window.addEventListener('touchmove', function(e){ !app.useSystemScroll && e.preventDefault(); }, false);
 		window.addEventListener('load', function(){
@@ -39,48 +38,49 @@
 			setTimeout(function(){ myload.load(); }, 100);
 		}, false);
 	</script>
-	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-	<script type="text/javascript" src="js/jquery-transit.min.js"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.1.1.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-transit.min.js') }}"></script>
 	<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/barrage.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
 </head>
 
 <body class="nowx">
 	<div class="asset">
 		<div class="_list">
-			<link asseturl="css/main.css">
-			<script asseturl="js/jquery-2.1.1.min.js"></script>
-			<script asseturl="js/jquery-transit.min.js"></script>
-			<script asseturl="js/main.js"></script>  
-			<img asseturl="img/loading.png">
+			<link asseturl="{{ url_for('static', filename='css/main.css') }}">
+			<script asseturl="{{ url_for('static', filename='js/jquery-2.1.1.min.js') }}"></script>
+			<script asseturl="{{ url_for('static', filename='js/jquery-transit.min.js') }}"></script>
+			<script asseturl="{{ url_for('static', filename='js/main.js') }}"></script>  
+			<img asseturl="{{ url_for('static', filename='img/loading.png') }}">
 			
-			<img asseturl="img/ico.png">
-			<img asseturl="img/s2-1.gif">
-			<img asseturl="img/s1_4.jpg">
-			<img asseturl="img/s2-3.png">
-			<img asseturl="img/s2-input.png">
-			<img asseturl="img/s4-1.jpg">
+			<img asseturl="{{ url_for('static', filename='img/ico.png') }}">
+			<img asseturl="{{ url_for('static', filename='img/s2-1.gif') }}">
+			<img asseturl="{{ url_for('static', filename='img/s1_4.jpg') }}">
+			<img asseturl="{{ url_for('static', filename='img/s2-3.png') }}">
+			<img asseturl="{{ url_for('static', filename='img/s2-input.png') }}">
+			<img asseturl="{{ url_for('static', filename='img/s4-1.jpg') }}">
 			
-			<img asseturl="img/s2-3.png">
-			<img asseturl="img/hand.png">
-			<img asseturl="img/user.jpg">
-			<img asseturl="img/user1.jpg">
-			<img asseturl="img/user2.jpg">
-			<img asseturl="img/user3.jpg">
+			<img asseturl="{{ url_for('static', filename='img/s2-3.png') }}">
+			<img asseturl="{{ url_for('static', filename='img/hand.png') }}">
+			<img asseturl="{{ url_for('static', filename='img/user.jpg') }}">
+			<img asseturl="{{ url_for('static', filename='img/user1.jpg') }}">
+			<img asseturl="{{ url_for('static', filename='img/user2.jpg') }}">
+			<img asseturl="{{ url_for('static', filename='img/user3.jpg') }}">
 			<!--以下是本人所加的 -->
-			<img asseturl="img/user4.jpg">
-			<img asseturl="img/user5.jpg">
-			<img asseturl="img/user6.jpg">
-			<img asseturl="img/user7.jpg">
-			<img asseturl="img/user8.jpg">
-			<img asseturl="img/user9.jpg">
-			<img asseturl="img/user10.jpg">
-			<img asseturl="img/user11.png">
+			<img asseturl="{{ url_for('static', filename='img/user4.jpg') }}">
+			<img asseturl="{{ url_for('static', filename='img/user5.jpg') }}">
+			<img asseturl="{{ url_for('static', filename='img/user6.jpg') }}">
+			<img asseturl="{{ url_for('static', filename='img/user7.jpg') }}">
+			<img asseturl="{{ url_for('static', filename='img/user8.jpg') }}">
+			<img asseturl="{{ url_for('static', filename='img/user9.jpg') }}">
+			<img asseturl="{{ url_for('static', filename='img/user10.jpg') }}">
+			<img asseturl="{{ url_for('static', filename='img/user11.png') }}">
 
-			<span class="ms_ms_self" data-id="<?php echo $name;?>" data-imgurl="<?php echo $headimgurl;?>" ></span>
+			<span class="ms_ms_self" data-id="{{ userinfo.nickname }}" data-imgurl="{{ userinfo.headimgurl }}" ></span>
 		</div>
 		<div class="_load">
-			<center><sub></sub><sup></sup><em style="background-image: url(img/user1.ico);"></em><var>0%</var></center>
+			<center><sub></sub><sup></sup><em style="background-image: url({{ url_for('static', filename='img/user1.ico') }});"></em><var>0%</var></center>
 			<script>
 				document.querySelector('.asset ._load em').setAttribute('style', 'background-image: url('+app._load_head+');');
 				if(!navigator.userAgent.match(/micromessenger/i)){ document.querySelector('body').setAttribute('class', 'nowx'); }
@@ -93,7 +93,7 @@
 		
 		<section class="s1">
 			<header>
-				<h3>输入1212，进入群聊</h3>
+				<h3>输入2019，进入群聊</h3>
 				<h4><i></i><i></i><i></i><i></i></h4>
 			</header>
 			<footer>
@@ -123,203 +123,210 @@
 			<ul>
 				<!-- delay 属性指当前话要停留多少秒 -->
 				<li delay="0.5">
-					<center><span class="innerTime">12月12日</span></center>
+					<center><span class="innerTime">10月1日</span></center>
 				</li>
 				<li delay="1">
-					<center><span>晓南、晓航邀请你和林左鸣（中国航空学会理事长）、吴光辉（C919大型客机总师）、吴希明（直-10、直-19总师）、黄领才（AG600水陆两栖飞机总师）、陈忠贵（北斗三号卫星总师）、叶培建（嫦娥系列总指挥、总师顾问）、孙泽洲（嫦娥三号、四号探测器总师）、李中华（英雄试飞员、“八一勋章”获得者）、徐川（南航马克思主义学院党总支书记）等加入群聊</span></center>
+					<center><span>晓南、晓航邀请你和同学A、B、C等加入群聊</span></center>
 				</li>
 				<li delay="2">
-					<center><span>晓南修改群名为“与校友总师面对面”</span></center>
+					<center><span>晓南修改群名为“回望历史·红旗飘扬”</span></center>
 				</li>
+
+				
 				<li delay="1.5">
 					<h2 class="user1"></h2>
-					<p>老师们、同学们，校友们，大家好！</p>
+					<p>老师们、同学们，晓南向大家问好啦！</p>
 				</li>
 				<li delay="1.5" class="my">
 					<h2 class="user0"></h2>
-					<p>这是什么群？？？</p>
+					<figure><img src="/static/img/s1_4.jpg" width="60%"></figure>
 				</li>
 				<li delay="1.5" class="my">
 					<h2 class="user0"></h2>
-					<figure><img src="img/s2-1.gif" width="60%"></figure>
+					<p>活动要开始了吗？我都迫不及待了！</p>
 				</li>
 				<li delay="1.5">
 					<h2 class="user2"></h2>
-					<p>眼力不错，一眼就看出了这个群的关键！群里航空航天总师云集，而且全是南航校友！</p>
+					<p>哈哈，稍等，先让我来邀请一位历史见证者——“钩沉”。</p>
 				</li>
-				<li delay="1.5" class="my">
-					<h2 class="user0"></h2>
-					<p>哇塞！厉害了，我的航！这是要上天吗？<i class="ico11"></i></p>
+				<li delay="1">
+					<center><span>晓航邀请钩沉加入群聊</span></center>
 				</li>
-				<li delay="3">
-					<h2 class="user1"></h2>
-					<p>“总师又是南航造”这句话熟悉不？对啦，官微的推送经常说到这句话！为什么我总说“又”<i class="ico9"></i></p>
-				</li>
-				<li delay="3">
-					<h2 class="user2"></h2>
-					<p>一个个总师的名字，对于Nuaaer来说，不仅耳熟能详并且分外亲切呢。</p>
-				</li>
-				<li delay="4" class="my">
-					<h2 class="user0"></h2>
-					<figure><img src="img/enen.gif" width="60%"></figure>
-				</li>
-				<li delay="3">
-					<h2 class="user2"></h2>
-					<p>咳咳，今天，晓南晓航在这里跟大家宣布一个大新闻！</p>
-				</li>
-				<li delay="1.5" class="my">
-					<h2 class="user0"></h2>
-					<p>看来我航这次要搞大动作，小板凳已经搬好了。</p>
-				</li>
-				<li delay="1.5" class="my">
-					<h2 class="user0"></h2>
-					<figure><img src="img/s1_4.jpg" width="60%"></figure>
-				</li>
-				<li delay="3.2">
-					<h2 class="user2"></h2>
-					<p>本周日，将有五位校友齐聚南航，带来“爱国奋斗·南航担当”校友总师思政公开课！</p>
-				</li>
-				<li delay="1.5" class="my">
-					<h2 class="user0"></h2>
-					<p>天呀！都有谁啊？</p>
-				</li>
-				<li delay="5">
-					<h2 class="user1"></h2>
-					<p>下面有请五位总师跟大家打个招呼吧。</p>
-				</li>
-				<li delay="3">
-					<h2 class="user3"></h2>
-					<p>大家好！我是中国航空学会理事长、南航78级校友林左鸣。</p>
-				</li>
-				<li delay="2">
-					<h2 class="user4"></h2>
-					<p>大家好！我是C919大型客机总设计师、南航77级校友吴光辉。</p>
-				</li>
-				<li delay="3">
-					<h2 class="user5"></h2>
-					<p>大家好！我是直-10、直-19总设计师、南航80级校友吴希明。</p>
-				</li>
-				<li delay="3">
+				<li delay="1.5">
 					<h2 class="user6"></h2>
-					<p>大家好！我是AG600水陆两栖飞机总设计师、南航84级校友黄领才。</p>
+					<p>大家好，我是钩沉，记录了那些遗落在历史里的往事。希望今天的讲述能带给大家如临其境的感受！</p>
 				</li>
-				<li delay="3">
-					<h2 class="user7"></h2>
-					<p>大家好！我是北斗三号卫星总设计师、南航86级校友陈忠贵。</p>
+				<li delay="1.5">
+					<h2 class="user3"></h2>
+					<p>哇塞！厉害了！欢迎欢迎~</p>
 				</li>
-				<li delay="3" class="my">
+				<li delay="1.5">
+					<h2 class="user4"></h2>
+					<p>那我们快开始吧！</p>
+				</li>
+				<li delay="1.5" class="my">
 					<h2 class="user0"></h2>
-					<p>哇塞，这么多总师都来啦！真的假的，想想都让人激动呢<i class="ico10"></i>，赶紧让我平复一下心情。</p>
+					<p>表情包（同意）</p>
 				</li>
-				<li delay="2">
-					<h2 class="user2"></h2>
-					<p>除了五位校友总师讲课之外，现场还设置了“总师对话”环节，由马克思主义学院党总支书记徐川与各位总师对话。</p>
-				</li>
-				<li delay="4">
-					<h2 class="user2"></h2>
-					<p>@晓南，又见到川哥了，你激动不？</p>
-				</li>
-				<li delay="2">
+				<!-- <li delay="1.5" href="bless">
 					<h2 class="user1"></h2>
-					<p>当然激动了，看到@徐川 川哥与五位总师对话，我更激动呢。</p>
+					<p>最后，让我们一起给祖国献上祝福吧</p>
+				</li> -->
+				<li delay="3.5">
+					<h2 class="user1"></h2>
+					<p>五星红旗是中华人民共和国的国旗，是国家的象征和标志，《国旗法》规定：每个公民和组织“都应当尊重和爱护国旗”。今天，让我们回顾关于国旗的几个难忘瞬间，一起为伟大祖国点赞、加油！</p>
 				</li>
-				<li delay="2">
-					<h2 class="user11"></h2>
-					<p>感谢晓南晓航，也感谢五位校友总师的到来，这个周日的校友总师思政公开课上，我也很荣幸有机会跟五位校友进行对话。</p>
+				<li delay="3.5">
+					<h2 class="user6"></h2>
+					<p>1949年10月1日，开国大典之上，毛主席在天安门城楼上亲手按动电钮，第一面五星红旗在天安门广场上冉冉升起。这面五星红旗从此飘扬于东方，中国人民从此站起来了，成为国家的主人。</p>
 				</li>
 				<li delay="5">
-					<h2 class="user11"></h2>
-					<p>@<?php echo $name;?>，你有什么问题想问总师们吗？现场我来帮你提问。</p>
+					<h2 class="user6"></h2>
+					<figure>
+					<video controls="controls" style="width: 90%;">
+						<source src="http://pwvmh4cz5.bkt.clouddn.com/%E5%BC%80%E5%9B%BD%E5%A4%A7%E5%85%B81.mp4" type="video/mp4" >
+					</video>
+					</figure>
 				</li>
-				<li delay="3" class="my">
+				<li delay="1.5" class="my">
 					<h2 class="user0"></h2>
-					<p>被川哥这么一问，我有些慌了……C919、AG600、直十、北斗卫星，问哪个总师呢？容我想一想</p>
+					<p>真是激动人心的时刻！！！</p>
 				</li>
-				<li delay="3">
-					<h2 class="user11"></h2>
-					<p>幸福来得太突然，看来你有些hold不住了，你先慢慢想。</p>
+				<li delay="1.5">
+					<h2 class="user2"></h2>
+					<p>太激动了！</p>
 				</li>
-				<li delay="3">
-					<h2 class="user9"></h2>
-					<p>我也来跟大家打个招呼！因为执行嫦娥四号任务，我这次很遗憾不能回到母校与大家见面了。</p>
+				<li delay="1.5">
+					<h2 class="user5"></h2>
+					<p>是啊（+表情）</p>
 				</li>
-				<li delay="3">
-					<h2 class="user10"></h2>
-					<p>母校的老师、同学们好！因为有相关任务，很抱歉这次也不能参加公开课了。</p>
-				</li>
-				<li delay="3">
-					<h2 class="user11"></h2>
-					<p>两位校友好！这次大家要务在身，期待在第二季校友总师公开课上与更多的校友见面。</p>
-				</li>
-				<li delay="3">
-					<h2 class="user8"></h2>
-					<p>@孙泽洲 等嫦娥四号任务结束之后，我们要一起参加第二季公开课，跟大家讲讲嫦娥探月的故事。</p>
-				</li>
-				<li delay="3">
-					<h2 class="user9"></h2>
-					<p>非常期待与母校的师生再次见面！</p>
-				</li>
-				<li delay="3">
-					<h2 class="user11"></h2>
-					<p>@叶培建，谢谢叶院士、叶院长对思政公开课的关心和支持！</p>
-				</li>
-				<li delay="3">
+				<li delay="2.5">
 					<h2 class="user1"></h2>
-					<p>@<?php echo $name;?>，想好提问的问题了吗？</p>
+					<p>五星红旗迎风飘扬的场景太壮观了，它的诞生也是意义非凡。让我们回到五星红旗诞生之前，了解它的诞生过程吧。</p>
 				</li>
-				<li delay="3" class="my">
+				<li delay="1.5" class="my">
 					<h2 class="user0"></h2>
-					<p>总师的问题还没想好，想先问晓南一个问题，第一季总师公开课的课程表可以先发来看看吗？</p>
+					<p>搬好小板凳。</p>
 				</li>
-				<li delay="3">
+				<li delay="1.5">
 					<h2 class="user1"></h2>
-					<p>看来你挺好学，发个红包鼓励你一下！<i class="ico5"></i></p>
+					<figure><img src="/static/img/applause.gif" width="60%"></figure>
 				</li>
-				<li delay="5" class="current">
+				<li delay="2.5">
+					<h2 class="user2"></h2>
+					<p>解放战争胜利后，新中国的建设开始筹备。在1949年7月，新政治协商会议筹备会发出了征集国旗图案的通告。</p>
+				</li>
+				<li delay="1.5">
 					<h2 class="user1"></h2>
-					<figure><img id="goodluck" src="img/goodluck.jpg" width="100%"></figure>
+					<p>在众多作品中，曾联松先生的作品脱颖而出。</p>
 				</li>
-				<li delay="3">
-					<h2 class="user11"></h2>
-					<p>欢迎校内外广大师生、校友前来听课，我们周日南航见！</p>
+				<li delay="2.5">
+					<h2 class="user6"></h2>
+					<p>曾联松先生一开始设计的图样，是红色背景中，四颗小星围绕一颗大星，大星上放置锤子镰刀。</p>
 				</li>
-				<li delay="3">
-					<h2 class="user1"></h2>
-					<p>@<?php echo $name;?>，听说周日公开课将有上千师生集体听课呢，要听课的话，快快来抢黄金座位的票吧！</p>
+				<li delay="3.5">
+					<h2 class="user6"></h2>
+					<p>据先生所言，他设计时是这样想的：中国共产党领导的工农红军是以五角星作为自己的标志的，而中国共产党又是中国人民的大救星，进而决定用五角星来象征它，用四颗小五角星来象征由四个社会阶级组成的人民。</p>
 				</li>
-				<li delay="3" class="my">
+				<li delay="1.5">
+					<h2 class="user6"></h2>
+					<figure><img src="/static/img/国企初稿.png" width="60%"></figure>
+				</li>
+				<li delay="1.5" class="my">
 					<h2 class="user0"></h2>
-					<p>谢谢晓南提醒，那怎么才能抢到听总师近距离讲课的票呢？</p>
+					<p>原来一开始的初稿是这样的啊！</p>
 				</li>
-				<li delay="3">
+				<li delay="1.5">
+					<h2 class="user2"></h2>
+					<p>那么后来呢？</p>
+				</li>
+				<li delay="3.5">
+					<h2 class="user6"></h2>
+					<p>此后，根据中国人民政治协商会议小组讨论的意见，去除了类似苏联国旗的锤子镰刀标志，并最终在1949年9月27日正式决定采纳红底五星旗的方案，并将其改名为“五星红旗”。</p>
+				</li>
+				<li delay="1.5">
 					<h2 class="user1"></h2>
-					<p>关注官微二维码，在双十二当天推送下留言，就有机会抢票！更有机会获得总师亲笔签名的航空模型！</p>
+					<p>原来这就是五星红旗的诞生和设计理念。</p>
 				</li>
-				<li delay="3">
-					<h2 class="user1"></h2>
-					<figure><img src="img/code.jpg" width="100%"></figure>
-				</li>
-				<li delay="3">
-					<h2 class="user1"></h2>
-					<p>@<?php echo $name;?>，周日我们不见不散！</p>
-				</li>
-				<li delay="3" class="my">
+				<li delay="2.5" class="my">
 					<h2 class="user0"></h2>
-					<p>周日，与校友总师不见不散！<i class="ico7"></i></p>
+					<p>国旗的设计既符合我国政治体系，又表达了广大人民一心爱国向党的精神，真是深刻的设计理念。</p>
 				</li>
+				<li delay="1.5">
+					<h2 class="user4"></h2>
+					<p>涨知识了，我还想要知道更多！</p>
+				</li>
+				<li delay="1.5">
+					<h2 class="user3"></h2>
+					<figure><img src="/static/img/enen.gif" width="60%"></figure>
+				</li>
+				<li delay="1.5">
+					<h2 class="user2"></h2>
+					<p>@钩沉</p>
+				</li>
+				<li delay="1.5" id="question1" href="question">
+					<h2 class="user6"></h2>
+					<p>你想具体了解哪一方面呢？
+						<br><br>
+						1. 五星红旗的诞生小谈
+						<br>
+						2. 五星红旗的设计内涵和制式规范
+						<br><br>
+						请回复1或者2哦。
+					</p>
+				</li>
+				<li href="wait">
+				</li>
+				<li delay="1.5">
+					<h2 class="user2"></h2>
+					<p>了解了这么多知识，我来考考你们吧。</p>
+				</li>
+				<li delay="1.5" class="my">
+					<h2 class="user0"></h2>
+					<p>表情包（没问题）</p>
+				</li>
+				<li delay="1.5" id="question2" href="question">
+					<h2 class="user2"></h2>
+					<p>
+						你知道《国旗法》中规定国旗最长的悬挂时间是几天吗？
+						<br><br>
+						A 30天
+						<br>
+						B 10天
+						<br>
+						C 3天
+					</p>
+				</li>
+				<li href="wait">
+				</li>
+				<li delay="1.5" href="bless">
+					<h2 class="user1"></h2>
+					<p>最后，让我们一起给祖国献上祝福吧</p>
+				</li>
+				<li href="wait">
+				</li>
+				<li delay="1.5">
+					<h2 class="user1"></h2>
+					<figure><img id="" src="/static/img/card.jpg" width="80%"></figure>
+				</li>
+				
 			</ul>
-			<div class="lucky_con">
+			<!-- <div class="lucky_con">
 				<div class="lucky_money">
 					<div class="remove_btn"><i class="fa fa-remove"></i></div>
-					<img src="img/poster.png">
+					<img src="{{ url_for('static', filename='img/poster.png') }}">
 					<div class="underware"></div>
 				</div>
-			</div>
+			</div> -->
 		</section>
 		
 		<section class="s2input bgm_on">
+			<input id="input_msg" placeholder="" maxlength="50">
+			<button id="send_btn">
+				发送
+			</button>
 			<center></center>
-			<p>背景音乐 ON</p>
+			<!-- <p>背景音乐 ON</p> -->
 		</section>
 		
 		<section class="s2packet">
@@ -332,6 +339,5 @@
 	<div class="loading">
 		<center><i></i></center>
 	</div>
-	
 </body>
-</html> 
+</html>

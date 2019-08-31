@@ -1,0 +1,84 @@
+/* .dmGroup {
+    position: fixed;
+    top: 140px;
+    left: 100%;
+    z-index: 10;
+    animation-timing-function: linear;
+    animation-fill-mode: none;
+    transform: translateZ(0);
+    white-space: nowrap;
+    height: 25px;
+} */
+.dmItem {
+    position: fixed;
+    z-index: 10;
+    animation-timing-function: linear;
+    animation-fill-mode: none;
+    transform: translateZ(0);
+    white-space: nowrap;
+    height: 25px;
+    display: inline-flex;
+    margin-right: 60px;
+    white-space: nowrap;
+}
+.dmItem .dm {
+    display: inline-flex;
+    vertical-align: middle;
+    align-items: center;
+    position: relative;
+    height: 25px;
+    line-height: 20px;
+    padding: 0 15px 0 5px;
+    background: rgba(0, 0, 0, .5);
+    border-radius: 25px;
+    overflow: hidden;
+    font-size: 14px;
+    color: #fff;
+}
+.dmItem .avatarBox {
+    display: inline-block;
+    position: relative;
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+}
+.dmItem .avatarBox .avatar {
+    width: 20px;
+    border: 0;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.dmItem .dm .sex {
+    position: absolute;
+    left: 10px;
+    top: 8px;
+    width: 12px;
+    height: 12px;
+    overflow: hidden;
+}
+.dmItem .dm .content {
+    display: inline-block;
+    max-width: 440px;
+    height: 50px;
+    line-height: 50px;
+    margin-right: 10px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+@keyframes dmAnimation2 {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-130%);
+    }
+}
+@keyframes dmAnimation {
+    from {
+        left: 100%;
+    }
+    to {
+        left: -100%;
+    }
+}
