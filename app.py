@@ -1,6 +1,6 @@
 # encoding=utf-8
 from flask import Flask, render_template, url_for, jsonify, request, redirect
-from models import db, Barrage
+from models import db, Barrage, UserRecord
 import config
 import requests
 
@@ -51,6 +51,9 @@ def home():
         'headimgurl': data['headimgurl']
     }
     print(userinfo)
+
+    # 查(根据用户名进行查询)
+    # record = UserRecord.query.filter(Barrage.username == username).first()
     return render_template('index.html', userinfo = userinfo)
 
 # 升旗界面
@@ -147,7 +150,7 @@ def add_like():
 #     username = "刘振龙"
 #     content = "12345"
 
-#     #查(根据用户名和弹幕内容进行查询)
+#     # 查(根据用户名和弹幕内容进行查询)
 #     bar = Barrage.query.filter(Barrage.username==username,Barrage.content==content).first()
 #     # 查(根据用户名进行查询)
 #     #bar = Barrage.query.filter(Barrage.username == username).first()
