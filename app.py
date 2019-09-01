@@ -17,19 +17,19 @@ def index():
     url = source_url.format(APPID = config.APPID, REDIRECT_URI = config.REDIRECT_URI, SCOPE = config.SCOPE)
     return redirect(url) # 重定向
 
-# 第一步回调URL
+# 第一步回调URL，主页面
 @app.route('/home')
 def home():
-    # 第二步：通过code换取网页授权access_token
+    # 第二步：通过code获取 “网页授权access_token”
     code = request.args.get('code')
     print(code)
     source_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?'\
         +'appid={APPID}&secret={APPSECRET}&code={CODE}&grant_type=authorization_code'
-    access_token_url = source_url.format(APPID = config.APPID, APPSECRET = config.APPSECRET, CODE = code)
-    resp = requests.get(access_token_url) # 请求api
+    oauth2_url = source_url.format(APPID = config.APPID, APPSECRET = config.APPSECRET, CODE = code)
+    resp = requests.get(oauth2_url) # 请求api
     data = eval(resp.text) # 将字符串转为字典
     print(data)
-    access_token = data['access_token']
+    oauth2_access_token = data['access_token']
     openid = data['openid']
 
     # 第三步：刷新access_token（如果需要）
@@ -37,7 +37,7 @@ def home():
     # 第四步：拉取用户信息(需scope为 snsapi_userinfo)
     source_url = 'https://api.weixin.qq.com/sns/userinfo'\
         + '?access_token={ACCESS_TOKEN}&openid={OPENID}&lang=zh_CN'
-    useinfo_url = source_url.format(ACCESS_TOKEN = access_token, OPENID = openid)
+    useinfo_url = source_url.format(ACCESS_TOKEN = oauth2_access_token, OPENID = openid)
     resp = requests.get(useinfo_url) # 请求api
     resp.encoding = 'utf-8'
     data = eval(resp.text)
@@ -53,6 +53,33 @@ def home():
     print(userinfo)
     return render_template('index.html', userinfo = userinfo)
 
+# 升旗界面
+@app.route('/nation_flag')
+def nation_flag():
+    return render_template('nation_flag.html')
+
+# 获取 wx.config
+@app.route('/get_wx_config', methods=['GET'])
+def get_wx_config():
+    # 第一步：获取 “普通access_token”
+    source_url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={APPID}&secret={APPSECRET}'
+    cgi_bin_url = source_url.format(APPID = config.APPID, APPSECRET = config.APPSECRET)
+    resp = requests.get(cgi_bin_url) # 请求api
+    data = eval(resp.text) # 将字符串转为字典
+    print(data)
+    cgi_bin_access_token = data['access_token']
+
+    # 第二步：获取 jsapi_ticket
+    source_url = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={ACCESS_TOKEN}&type=jsapi'
+    ticket_url = source_url.format(ACCESS_TOKEN = cgi_bin_access_token)
+
+    # 第三步：签名算法
+    # noncestr=Wm3WZYTPz0wzccnW
+    # jsapi_ticket=sM4AOVdWfPE4DxkXGEs8VMCPGGVi4C3VM0P37wVUCFvkVAy_90u5h9nbSlYy3-Sl-HhTdfl2fzFy1AOcHKP7qg
+    # timestamp=1414587457
+    # url=http://mp.weixin.qq.com?params=value
+
+# 添加弹幕
 @app.route('/add', methods=['POST'])
 def add_bar():
     # 获取前端数据
@@ -71,6 +98,7 @@ def add_bar():
         'msg': 'success'
     })
 
+# 获取弹幕
 @app.route('/list_page/<int:page>', methods=['GET'])
 def list_page(page=1):
     # 获取点赞数前十的弹幕
@@ -94,6 +122,7 @@ def list_page(page=1):
         'data': bar_list_schema
     })
 
+# 点赞弹幕
 @app.route('/addLike', methods=['POST'])
 def add_like():
     # 获取前端数据

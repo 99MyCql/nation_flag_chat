@@ -105,10 +105,8 @@ function createDM(item, i) {
 	let timer = setInterval(function() {
 		if (left < -100) {
 			clearInterval(timer); //终止定时器
-			if (i == 9) {
-				page += 1;
-				getDM(); // 当过去十个弹幕后，再从后端获取十个
-			}
+			page += 1;
+			getDM(); // 当过去十个弹幕后，再从后端获取十个
 		}
 		left += -item.speed;
 		dmItem.style.left = left + "%";

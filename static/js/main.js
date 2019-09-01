@@ -182,6 +182,7 @@ $(function(){
       }
     }
   });
+
   $(".s1 center a").one(app.evtClick, function(){
     $("html, body").css('background-color', '#fff');
     $(".s1").addClass('no_animation').transit({x:'-100%'}, 300, function(){ $(this).remove(); });
@@ -202,82 +203,20 @@ $(function(){
     }
 
     li.css({display:'block', opacity:0});
-    scrollBottom(10, function(){
+    // li.css({opacity:1});
+    // if(!li.children().eq(0).is('center')){ !app.sound.mute && app.sound.msg.play(); }
+    // setTimeout(playPage2, li.attr('delay')*1000 || 2500);
+    scrollBottom(10, function() {
       li.css({opacity:1});
       if(!li.children().eq(0).is('center')){ !app.sound.mute && app.sound.msg.play(); }
       setTimeout(playPage2, li.attr('delay')*1000 || 2500);
     });
   }
-  
-  function question1(answer) {
-    if (answer == '1') {
-      $(".s2 li:hidden[href='wait']:first").remove();
-      return `
-        <li delay="1.5">
-          <h2 class="user6"></h2>
-          <p>
-          <b>五星红旗的诞生小谈</b>
-          <br><br>
-          中国共产党在解放战争胜利后开始筹备新中国的建设，于1949年7月发出了征集国旗图案的通告。
-          <br><br>
-          曾联松先生设计的国旗样稿在数千个图案中最终中选，将原设计稿中大星上的镰刀斧头去除后，成为我们如今看见的五星红旗。
-          </p>
-        </li>
-      `
-    } else if (answer == '2') {
-      $(".s2 li:hidden[href='wait']:first").remove();
-      return `
-        <li delay="1.5">
-          <h2 class="user6"></h2>
-          <p>
-          <b>五星红旗的设计内涵和制式规范</b>
-          <br><br>
-          中华人民共和国国旗为五星红旗，长方形，红色象征革命，其长与高为三与二之比，旗面左上方缀黄色五角星五颗，象征共产党领导下的革命大团结，星用黄色象征红色大地上呈现光明。
-          <br><br>
-          一星较大，其外接圆直径为旗高3/10，居左；四星较小，其外接圆直径为旗高1/10，环拱于大星之右侧，并各有一个角尖正对大星的中心点，表达亿万人民心向伟大的中国共产党，如似众星拱北辰。
-          <br>
-          旗杆套为白色，以与旗面的红色相区别。
-          </p>
-        </li>
-      `
-    }
-  }
-
-  function question2(answer) {
-    if (answer == 'B') {
-      $(".s2 li:hidden[href='wait']:first").remove();
-      return `
-        <li delay="1.5">
-          <h2 class="user2"></h2>
-          <p>
-          恭喜你答对啦!!
-          <br><br>
-          《中华人民共和国国旗法》规定：为确保国旗的圣洁和完整，天安门广场上空的国旗基本上几天更换一面。
-          <br>
-          每逢重大节日，必须更换新国旗。即使国旗不受损，悬挂的最长时间也不得超过10天。
-          </p>
-        </li>
-      `
-    } else if (answer == 'A' || answer == 'C') {
-      $(".s2 li:hidden[href='wait']:first").remove();
-      return `
-        <li delay="1.5">
-          <h2 class="user2"></h2>
-          <p>
-          你答错了呢。
-          <br><br>
-          《中华人民共和国国旗法》规定：为确保国旗的圣洁和完整，天安门广场上空的国旗基本上几天更换一面。
-          <br>
-          每逢重大节日，必须更换新国旗。即使国旗不受损，悬挂的最长时间也不得超过10天。
-          </p>
-        </li>
-      `
-    }
-  }
 
   // 发送信息按钮
   $("#send_btn").on(app.evtClick, function(e){
     let msg = $("#input_msg").val();
+    msg = msg.replace(/(^\s*)|(\s*$)/g, ""); // 去空格
     console.log(msg);
     if (msg == '') return; // 空输入无效
     $("#input_msg").val(''); // 清空输入
@@ -297,6 +236,7 @@ $(function(){
         <p>${msg}</p>
       </li>
     `);
+    msg = msg.toUpperCase(); // 小写转大写
     switch ($(".s2 li:visible[href='question']:last").attr('id')) {
       case 'question1':
         $(".s2 li:hidden:first").after(question1(msg));
@@ -304,58 +244,49 @@ $(function(){
       case 'question2':
         $(".s2 li:hidden:first").after(question2(msg));
         break;
+      case 'question3':
+        $(".s2 li:hidden:first").after(question3(msg));
+        break;
+      case 'question4':
+        $(".s2 li:hidden:first").after(question4(msg));
+        break;
+      case 'question5':
+        $(".s2 li:hidden:first").after(question5(msg));
+        break;
       default:
         break;
     }
     playPage2();
   });
 
-  $(".s2 li figure b").on(app.evtClick, function(e){
-    app.useSystemScroll=true;
-    if($(".s2input").hasClass("lucky_out")){
-      $(".s2input").removeClass("lucky_out")
-    }
-    $(".s2input").addClass("lucky_out")
-    $(".lucky_con").css({
-      "height": document.body.offsetHeight+"px",
-      "width": document.body.offsetWidth+"px",
-      "display": "block"
+  // 视频监听事件
+  let isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+  let videos = document.getElementsByTagName("video");
+  console.log(videos);
+  for (let index = 0; index < videos.length; index++) {
+    const element = videos[index];
+    // 播放结束重新开始（去广告
+    element.addEventListener('ended', () => {
+      if (!isiOS) {
+        element.play();
+        setTimeout(() => {
+          element.pause();
+        }, 100)
+      }
     })
-    if($(".lucky_con").hasClass("lucky_out")){
-      $(".lucky_con").removeClass("lucky_out");
-    }
-    $(".lucky_money").addClass("lucky_in");
-  });
-  $(".remove_btn").on(app.evtClick, function(){
-    app.useSystemScroll=true;
-    if($(".s2input").hasClass("lucky_out")){
-      $(".s2input").removeClass("lucky_out")
-    }
-    $(".s2input").addClass("lucky_in")
-    if($(".lucky_con").hasClass("lucky_out")){
-      $(".lucky_con").removeClass("lucky_out");
-    }
-    $(".lucky_con").addClass("lucky_out");
-    setTimeout(function(){
-      $(".lucky_con").css({
-        "display":"none"
-      })
-    }, 600)
-  })
-  // $(".s2input").on(app.evtClick, function(e){
-  //   if($(this).hasClass("bgm_on")){
-  //     $(this).removeClass("bgm_on");
-  //     app.sound.mute = true;
-  //     app.sound.bg.pause();
-  //     $(".s2input p").html("背景音乐 OFF")
-  //   }else{
-  //     $(this).addClass("bgm_on");
-  //     app.sound.mute = false;
-  //     app.sound.bg.play();
-  //     $(".s2input p").html("背景音乐 ON")
-  //   }
-  // })
-
+    // 播放视频时，停止对话
+    element.addEventListener('play', () => {
+      $(".s2 li:visible:last").after(`
+        <li href="wait">
+        </li>
+      `)
+    })
+    // 结束视频时，开始对话
+    element.addEventListener('pause', () => {
+      $(".s2 li:hidden[href='wait']:first").remove();
+      playPage2();
+    })
+  }
 
 
   /***** init *****/
@@ -394,7 +325,7 @@ $(function(){
         name: 'null',
         head: 'img/user'+Math.floor(Math.random()*3+1)+'.jpg'
       }
-    }	
+    }
   }else{
     app.user = {
       name: 'null',
@@ -414,7 +345,7 @@ $(function(){
   }
 
 
-  /* 分享设置 */
+  /******* 分享设置 *********/
   if(app.weixin){
     get_wx_config();
     var linkurl_wx = "http://www.moecai.com/";
@@ -478,7 +409,6 @@ $(function(){
         success: function () {
           // 用户确认分享后执行的回调函数
           //alert("成功");
-          
         },
         cancel: function () {
           // 用户取消分享后执行的回调函数
@@ -519,13 +449,10 @@ $(function(){
         link: app.wx_config.linkurl_other, // 分享链接
         imgUrl: app.wx_config.imgurl300, // 分享图标
         success: function (res) {
-
         },
         cancel: function (res) {
-
         },
         fail: function (res) {
-
         }
       });
       wx.onMenuShareQZone({
@@ -534,13 +461,10 @@ $(function(){
         link: app.wx_config.linkurl_other, // 分享链接
         imgUrl: app.wx_config.imgurl300, // 分享图标
         success: function (res) {
-
         },
         cancel: function (res) {
-
         },
         fail: function (res) {
-
         }
       });
       wx.error(function(res){

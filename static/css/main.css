@@ -66,10 +66,6 @@
 .user5 { background-size: 100% 100%; background-image: url(../img/user5.jpg);}
 .user6 { background-size: 100% 100%; background-image: url(../img/user6.jpg);}
 .user7 { background-size: 100% 100%; background-image: url(../img/user7.jpg);}
-.user8 { background-size: 100% 100%; background-image: url(../img/user8.jpg);}
-.user9 { background-size: 100% 100%; background-image: url(../img/user9.jpg);}
-.user10 { background-size: 100% 100%; background-image: url(../img/user10.jpg);}
-.user11 { background-size: 100% 100%; background-image: url(../img/user11.png);}
 
 
 
@@ -156,10 +152,11 @@
 
 .s2 li .user1:after { content: "晓南";}
 .s2 li .user2:after { content: "晓航";}
-.s2 li .user3:after { content: "同学A";}
-.s2 li .user4:after { content: "同学B";}
-.s2 li .user5:after { content: "同学C";}
-.s2 li .user6:after { content: "钩沉";}
+.s2 li .user3:after { content: "郑永安";}
+.s2 li .user4:after { content: "聂宏";}
+.s2 li .user5:after { content: "李雷";}
+.s2 li .user6:after { content: "韩梅梅";}
+.s2 li .user7:after { content: "小百科";}
 
 .s2 li.my { padding-top: 0.1em;}
 .s2 li.my h2 { float: right; margin: 0 -4em 0 0; }
@@ -170,7 +167,7 @@
 .s2 li .my_name { padding-right: 1em;}
 .s2 li .at_name { padding-right: 1em;}
 
-.s2input { display: none; position: fixed; top: auto; bottom: 0; min-height: 0; height: 0; padding-bottom: 12.8125%; border-top: solid #e3e3e3 1px; background-color: #ebebeb; background-image: url(/static/img/s2-input.png); }
+.s2input { display: none; position: fixed; top: auto; bottom: 0; min-height: 0; height: 0; padding-bottom: 12.8125%; border-top: solid #e3e3e3 1px; background-color: #ebebeb; background-image: url(/static/img/input.png); }
 .s2input p {
   padding-top: 4%;
   text-align: center;
