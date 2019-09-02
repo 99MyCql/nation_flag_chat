@@ -137,6 +137,7 @@ $(function(){
   
   /***** 滚动到底部 *****/
   function scrollBottom(speed, callback){
+    console.log('=====scrollBottom()=====');
     if(!speed || typeof(speed)!='number' || speed<=0){
       window.scrollTo(0, document.body.scrollHeight);
       typeof(callback)=="function" && callback();
@@ -187,25 +188,32 @@ $(function(){
     $("html, body").css('background-color', '#fff');
     $(".s1").addClass('no_animation').transit({x:'-100%'}, 300, function(){ $(this).remove(); });
     $(".s2, .s2input").css({display:'block', x:'100%'}).transit({x:0}, 300);
-    setTimeout(function(){ playPage2(); app.sound.bg.play();  }, 350);
+    setTimeout(function(){ if(stop == true) return;playPage2(); app.sound.bg.play();  }, 350);
   });
   
   
   /***** s2 *****/
+  var stop = false;
   function playPage2() {
+    console.log('=====playPage2()=====');
+    // 如果设置了暂停，则退出
+    console.log(stop);
+    if (stop == true) return;
+
     var li = $(".s2 li:hidden").eq(0);
     if(li.length==0){ app.useSystemScroll=true; return; }
 
-    if (li.attr('href') == 'wait') return; // 如果碰到停止标签，则退出
+    // 如果碰到停止标签，则退出
+    if (li.attr('href') == 'wait') {
+      stop = true;
+      return;
+    }
     if (li.attr('href') == 'bless') {
       $("#input_msg").attr('placeholder', '留言祝福')
       getDM(); // 获取弹幕
     }
 
     li.css({display:'block', opacity:0});
-    // li.css({opacity:1});
-    // if(!li.children().eq(0).is('center')){ !app.sound.mute && app.sound.msg.play(); }
-    // setTimeout(playPage2, li.attr('delay')*1000 || 2500);
     scrollBottom(10, function() {
       li.css({opacity:1});
       if(!li.children().eq(0).is('center')){ !app.sound.mute && app.sound.msg.play(); }
@@ -218,6 +226,7 @@ $(function(){
     let msg = $("#input_msg").val();
     msg = msg.replace(/(^\s*)|(\s*$)/g, ""); // 去空格
     console.log(msg);
+
     if (msg == '') return; // 空输入无效
     $("#input_msg").val(''); // 清空输入
 
@@ -225,6 +234,7 @@ $(function(){
     if ($(".s2 li:visible:last").attr('href') == 'bless') {
       sendDM(userinfo, msg);
       $(".s2 li:hidden[href='wait']:first").remove();
+      stop = false;
       playPage2();
       return;
     }
@@ -236,6 +246,11 @@ $(function(){
         <p>${msg}</p>
       </li>
     `);
+
+    // 如果未暂停却发了信息，就当作瞎发的信息
+    if (stop == false) return;
+
+    // 检验回答
     msg = msg.toUpperCase(); // 小写转大写
     switch ($(".s2 li:visible[href='question']:last").attr('id')) {
       case 'question1':
@@ -256,38 +271,45 @@ $(function(){
       default:
         break;
     }
+    stop = false;
     playPage2();
   });
 
   // 视频监听事件
   let isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
-  let videos = document.getElementsByTagName("video");
+  let videos = document.getElementsByTagName('video');
   console.log(videos);
   for (let index = 0; index < videos.length; index++) {
-    const element = videos[index];
     // 播放结束重新开始（去广告
-    element.addEventListener('ended', () => {
+    videos[index].addEventListener('ended', () => {
+      console.log('ended');
       if (!isiOS) {
-        element.play();
-        setTimeout(() => {
-          element.pause();
-        }, 100)
+        videos[index].play();
+        stop = false;
+        videos[index].pause();
       }
     })
     // 播放视频时，停止对话
-    // element.addEventListener('play', () => {
-    //   stop = true;
-    //   $(".s2 li:visible:last").after(`
-    //     <li href="wait">
-    //     </li>
-    //   `)
+    videos[index].addEventListener('play', () => {
+      console.log('play');
+      stop = true;
+    })
+    // 快进
+    // videos[index].addEventListener('timeupdate', () => {
+    //   setTimeout(() => {
+    //     console.log('timeupdate');
+    //     stop = true;
+    //   }, 2500);
     // })
-    // 结束视频时，开始对话
-    // element.addEventListener('pause', () => {
-    //   stop = false;
-    //   $(".s2 li:hidden[href='wait']:first").remove();
-    //   playPage2();
-    // })
+    // 暂停视频时，开始对话
+    videos[index].addEventListener('pause', () => {
+      setTimeout(() => {
+        console.log('pause');
+        if (stop == false) return;
+        stop = false;
+        playPage2();
+      }, 2000);
+    })
   }
 
 
@@ -302,11 +324,13 @@ $(function(){
     });
   }
 
-  $("body").on('contextmenu', function(e) { //禁止长按选择
+  //禁止长按选择
+  $("body").on('contextmenu', function(e) {
     e.preventDefault();
   });
 
-  $(".mute").on(app.evtClick, function() { //静音按钮
+  //静音按钮
+  $(".mute").on(app.evtClick, function() {
     $(this).toggleClass('muted');
     if($(this).hasClass('muted')){
       app.sound.bg.pause();
@@ -353,13 +377,13 @@ $(function(){
   /******* 分享设置 *********/
   if(app.weixin){
     get_wx_config();
-    var linkurl_wx = "http://www.moecai.com/";
-    var linkurl_other = "http://www.moecai.com/szd";
-    var title = "南航第十六次党代会喊你加入群聊";
-    var title_other = "南航第十六次党代会喊你加入群聊";
-    var des = "这次党代会的主要任务是：全面总结校第十五次党代会以来六年的工作和取得的经验，科学谋划学校未来五年的发展。";
-    var imgurl300 = "http://www.moecai.com/img/logo300.jpg";
-    var imgurl120 = "http://www.moecai.com/img/logo120.jpg"
+    var linkurl_wx = "http://dev2.dounine.live/";
+    var linkurl_other = "http://dev2.dounine.live/";
+    var title = "今日我们都是护旗手";
+    var title_other = "今日我们都是护旗手";
+    var des = "今日我们都是护旗手";
+    var imgurl300 = "/static/img/logo.ico";
+    var imgurl120 = "/static/img/logo.ico"
     app.wx_config = {
       linkurl_wx:linkurl_wx,
       linkurl_other:linkurl_other,

@@ -1,5 +1,7 @@
 .vscode
 nohup.out
+*.mp4
+!???????.mp4
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

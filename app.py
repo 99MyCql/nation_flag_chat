@@ -3,6 +3,7 @@ from flask import Flask, render_template, url_for, jsonify, request, redirect
 from models import db, Barrage, UserRecord
 import config
 import requests
+from sign import Sign
 
 app = Flask(__name__)
 app.config.from_object(config)
@@ -62,8 +63,10 @@ def nation_flag():
     return render_template('nation_flag.html')
 
 # 获取 wx.config
-@app.route('/get_wx_config', methods=['GET'])
+@app.route('/get_wx_config', methods=['POST'])
 def get_wx_config():
+    url = request.form.get('url')
+
     # 第一步：获取 “普通access_token”
     source_url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={APPID}&secret={APPSECRET}'
     cgi_bin_url = source_url.format(APPID = config.APPID, APPSECRET = config.APPSECRET)
@@ -75,12 +78,27 @@ def get_wx_config():
     # 第二步：获取 jsapi_ticket
     source_url = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={ACCESS_TOKEN}&type=jsapi'
     ticket_url = source_url.format(ACCESS_TOKEN = cgi_bin_access_token)
+    resp = requests.get(ticket_url) # 请求api
+    data = eval(resp.text) # 将字符串转为字典
+    jsapi_ticket = data['ticket']
 
     # 第三步：签名算法
     # noncestr=Wm3WZYTPz0wzccnW
     # jsapi_ticket=sM4AOVdWfPE4DxkXGEs8VMCPGGVi4C3VM0P37wVUCFvkVAy_90u5h9nbSlYy3-Sl-HhTdfl2fzFy1AOcHKP7qg
     # timestamp=1414587457
     # url=http://mp.weixin.qq.com?params=value
+    sign = Sign(jsapi_ticket, url)
+    ret = sign.sign()
+    return jsonify({
+        'status_code': config.SUCCESS,
+        'msg': 'success',
+        'data': {
+            'appId': config.APPID,
+            'timestamp': ret['timestamp'],
+            'nonceStr': ret['nonceStr'],
+            'signature': ret['signature'],
+        }
+    })
 
 # 添加弹幕
 @app.route('/add', methods=['POST'])

@@ -2,10 +2,10 @@ function question1(answer) {
   if (answer == '2') {
     $(".s2 li:hidden[href='wait']:first").remove();
     return `
-      <li delay="3.5">
+      <li delay="5.5">
         <h2 class="user7"></h2>
         <p>
-        <b>五星红旗的礼仪</b>
+        <b>【五星红旗的礼仪】</b>
         <br><br>
         《中华人民共和国国旗法》第十二条规定：国旗“应当早晨升起，傍晚降下”。这里的“应当”，就是“应该”和“理所当然”的意思。
         <br><br>
@@ -21,7 +21,7 @@ function question1(answer) {
       <li delay="5.5">
         <h2 class="user7"></h2>
         <p>
-        <b>五星红旗的设计内涵和制式规范</b>
+        <b>【五星红旗的设计内涵和制式规范】</b>
         <br><br>
         中华人民共和国国旗为五星红旗，长方形，红色象征革命，其长与高为三与二之比，旗面左上方缀黄色五角星五颗，象征共产党领导下的革命大团结，星用黄色象征红色大地上呈现光明。
         <br><br>
@@ -41,7 +41,7 @@ function question2(answer) {
   if (answer == 'B') {
     $(".s2 li:hidden[href='wait']:first").remove();
     return `
-      <li delay="3.5">
+      <li delay="5.5">
         <h2 class="user7"></h2>
         <p>
         回答正确！
@@ -55,7 +55,7 @@ function question2(answer) {
   } else if (answer == 'A' || answer == 'C') {
     $(".s2 li:hidden[href='wait']:first").remove();
     return `
-      <li delay="3.5">
+      <li delay="5.5">
         <h2 class="user7"></h2>
         <p>
         回答错咯~
@@ -76,7 +76,7 @@ function question3(answer) {
       <li delay="7.5">
         <h2 class="user7"></h2>
         <p>
-        <b>登珠峰之险</b>
+        <b>【登珠峰之险】</b>
         <br><br>
         5月21日时，珠峰附近已出现西南季风，26日西南季风北上至喜马拉雅山脉南麓，引起南坡大量降水。一旦降水开始，登顶之难将乘几何倍数递增。
         <br><br>
@@ -94,7 +94,7 @@ function question3(answer) {
       <li delay="5.5">
         <h2 class="user7"></h2>
         <p>
-        <b>登顶成就</b>
+        <b>【登顶成就】</b>
         <br><br>
         这是人类历史上第一次从珠峰北坡顺利登顶。
         <br><br>
@@ -107,10 +107,10 @@ function question3(answer) {
   } else if (answer == '3') {
     $(".s2 li:hidden[href='wait']:first").remove();
     return `
-      <li delay="3.5">
+      <li delay="5.5">
         <h2 class="user7"></h2>
         <p>
-        <b>登顶意义</b>
+        <b>【登顶意义】</b>
         <br><br>
         毫无疑问，中国登山队在物质条件十分艰苦的条件下成功从北坡登顶珠峰，完成了人类历史上前无古人的壮举，这不仅是个体力量与意志的胜利，更是在当时国际大背景下中国精神力量的成功展示。
         <br><br>

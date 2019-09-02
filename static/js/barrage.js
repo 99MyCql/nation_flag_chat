@@ -14,7 +14,7 @@ function getDM() {
 			console.log(list);
 			// 处理弹幕参数
 			for (let i = 0; i < list.length; i++) {
-				const speed = Math.random() / 5 + 0.15;
+				const speed = Math.random() / 5 + 0.25;
 				const bottom = Math.floor(Math.random() * 350) + 50;
 				const item = {
 					avatar_url: list[i].avatar_url,
