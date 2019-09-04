@@ -5,8 +5,10 @@ import config
 import requests
 from sign import Sign
 
+# 初始化flask实例
 app = Flask(__name__)
-app.config.from_object(config)
+app.config.from_object(config) # 从配置模块中导入配置
+
 db.init_app(app)
 
 @app.route('/')
@@ -162,61 +164,7 @@ def add_like():
         'msg': 'success'
     })
 
-# @app.route('/search/',methods=['GET','POST'])
-# def search_bar():
-#     # 获取前端数据
-#     username = "刘振龙"
-#     content = "12345"
-
-#     # 查(根据用户名和弹幕内容进行查询)
-#     bar = Barrage.query.filter(Barrage.username==username,Barrage.content==content).first()
-#     # 查(根据用户名进行查询)
-#     #bar = Barrage.query.filter(Barrage.username == username).first()
-#     if bar == None:
-#         print("未查询到！")
-#     else:
-#         #头像
-#         print(bar.avatar_url)
-#         #点赞数
-#         print(bar.like_count)
-#         #弹幕内容
-#         print(bar.content)
-
-#     return "ok"
-
-# @app.route('/edit/',methods=["GET","POST"])
-# def edit_bar():
-#     # 获取前端数据
-#     username = "刘振龙"
-#     content = "12345"
-#     #改
-#     bar = Barrage.query.filter(Barrage.username==username, Barrage.content==content).first()
-#     #更改获赞数
-#     if bar == None:
-#         print("未查询到！")
-#     else:
-#         bar.like_count = bar.like_count + 1
-#         db.session.commit()
-
-#     return "ok"
-
-# @app.route('/delete/',methods=["GET","POST"])
-# def delete_bar():
-#     # 获取前端数据
-#     username = "刘振龙"
-#     content = "12345"
-
-#     #删
-#     bar = Barrage.query.filter(Barrage.username==username,Barrage.content==content).first()
-#     if bar == None:
-#         print("未查询到！")
-#     else:
-#         db.session.delete(bar)
-#         db.session.commit()
-
-#     return "ok"
 
 if __name__ == '__main__':
-    # app.run(host="服务器地址",post=端口号,debug模式)
     app.run(host=config.HOST, port=config.PORT, debug=config.DEBUG)
 

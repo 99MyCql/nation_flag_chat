@@ -1,46 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>今日我们都是护旗手</title>
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/animate.min.css') }}">
+  <meta charset="UTF-8">
+  <title>今日我们都是护旗手</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.min.css') }}">
 </head>
 <style type="text/css">
 /* body */
 body {
-	margin: 0px;
-	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 /* 加载 */
 .loading{
-	width:100%;
-	height: 100%;
-	position: fixed;
-	top:0;
-	left: 0;
-	z-index: 1000;
-	background-color: #ff0000;
+  width:100%;
+  height: 100%;
+  position: fixed;
+  top:0;
+  left: 0;
+  z-index: 1000;
+  background-color: #ff0000;
 }
 .loading .pic{
-	width: 150px;
-	height: 150px;
-	/* background: url(images/loading.gif); */
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left:0;
-	right:0;
-	margin: auto;
+  width: 150px;
+  height: 150px;
+  /* background: url(images/loading.gif); */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left:0;
+  right:0;
+  margin: auto;
 }
 .loading .pic i{
-	display: block;
-	float: left;
-	width: 20px;
-	height: 150px;
-	background: #ffffff;
-	margin: 0 2px;
-	transform: scaleY(0.4);
-	animation: load 1.2s infinite;
+  display: block;
+  float: left;
+  width: 20px;
+  height: 150px;
+  background: #ffffff;
+  margin: 0 2px;
+  transform: scaleY(0.4);
+  animation: load 1.2s infinite;
 }
 .loading .pic i:nth-child(1){animation-delay:0.1s }
 .loading .pic i:nth-child(2){animation-delay:0.2s }
@@ -60,10 +60,10 @@ body {
   height:100%;
 }
 .red {
-	background-color: red;
+  background-color: red;
 }
 .none {
-	display: none;
+  display: none;
 }
 #title {
     z-index: 10;
@@ -74,81 +74,81 @@ body {
 }
 /* 按钮 */
 #button {
-	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-	position: absolute;
-	top: 40%;
-	left: 15%;
-	width: 70%;
-	z-index: 10;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  position: absolute;
+  top: 40%;
+  left: 15%;
+  width: 70%;
+  z-index: 10;
 }
 /* 旗手卡片 */
 #card {
-	z-index: 10;
-	position: absolute;
-	top: 10%;
-	left: 8%;
-	width: 80%;
+  z-index: 10;
+  position: absolute;
+  top: 10%;
+  left: 8%;
+  width: 80%;
 }
 #result {
-	z-index: 10;
-	position: absolute;
-	top: 60%;
-	width: 100%;
-	text-align: center;
-	font-size: 5.5vw;
-	color: #faef00;
-	font-family: Microsoft Yahei;
+  z-index: 10;
+  position: absolute;
+  top: 60%;
+  width: 100%;
+  text-align: center;
+  font-size: 5.5vw;
+  color: #faef00;
+  font-family: Microsoft Yahei;
 }
 #add1 {
-	position: absolute;
-	top: 57%;
-	left: 45%;
+  position: absolute;
+  top: 57%;
+  left: 45%;
 }
 </style>
 
 <body>
-	<script>
-	document.onreadystatechange=function(){
-		console.log(document.readyState);
-		if(document.readyState=="complete") {
-			$(".loading").fadeOut();
-		}
-	}
-	</script>
-	<div class="loading">
-		<div class="pic">
-		<i></i>
-		<i></i>
-		<i></i>
-		<i></i>
-		<i></i>
-		</div>
-	</div>
-	<!-- loading -->
+  <script>
+  document.onreadystatechange=function(){
+    console.log(document.readyState);
+    if(document.readyState=="complete") {
+      $(".loading").fadeOut();
+    }
+  }
+  </script>
+  <div class="loading">
+    <div class="pic">
+    <i></i>
+    <i></i>
+    <i></i>
+    <i></i>
+    <i></i>
+    </div>
+  </div>
+  <!-- loading -->
 
-	<img id="bg" src="http://pwvmh4cz5.bkt.clouddn.com/2.gif" class="bg none">
-	<img id="bg2" src="http://pwvmh4cz5.bkt.clouddn.com/3.png" class="bg red">
-	<img id="title" src="/static/img/nation_flag_title.png">
-	<img id="button" src="/static/img/nation_flag_btn.png" class="button animated infinite pulse delay-2s slow">
+  <img id="bg" src="http://pwvmh4cz5.bkt.clouddn.com/2.gif" class="bg none">
+  <img id="bg2" src="http://pwvmh4cz5.bkt.clouddn.com/3.png" class="bg red">
+  <img id="title" src="/static/img/nation_flag_title.png">
+  <img id="button" src="/static/img/nation_flag_btn.png" class="button animated infinite pulse delay-2s slow">
 
-	<!-- <img id="card" class="none" src="/static/img/旗手.png" style="animation: 1500ms linear 1000ms 1 normal both running zoomIn;"> -->
-	<img id="add1" src="/static/img/nation_flag_add1.png" class="none animated fadeOutUp delay-3s slower">
-	 <!--  -->
-	<div id="result" class="none">
-		<b>我是第 <span id="count">245666</span> 个护旗手</b>
-	</div>
+  <!-- <img id="card" class="none" src="/static/img/旗手.png" style="animation: 1500ms linear 1000ms 1 normal both running zoomIn;"> -->
+  <img id="add1" src="/static/img/nation_flag_add1.png" class="none animated fadeOutUp delay-3s slower">
+   <!--  -->
+  <div id="result" class="none">
+    <b>我是第 <span id="count">245666</span> 个护旗手</b>
+  </div>
 </body>
 
 <script src="/static/js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript">
 $('#button').one('click', e => {
-	$('#bg').removeClass('none');
-	$('#bg2').removeClass('red');
-	$('#button').removeClass('animated');
-	$('#result').removeClass('none');
-	$('#add1').removeClass('none');
-	let old = parseInt($('#count').html());
-	$('#count').html(old+1);
+  $('#bg').removeClass('none');
+  $('#bg2').removeClass('red');
+  $('#button').removeClass('animated');
+  $('#result').removeClass('none');
+  $('#add1').removeClass('none');
+  let old = parseInt($('#count').html());
+  $('#count').html(old+1);
 })
 </script>
 </html>
