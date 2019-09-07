@@ -4,7 +4,7 @@ from models import db, Barrage, UserRecord
 import config
 import requests
 from sign import Sign
-# from redis import Redis
+from redis import Redis
 
 # 初始化flask实例
 app = Flask(__name__)
@@ -14,7 +14,7 @@ app.config.from_object(config) # 从配置模块中导入配置
 db.init_app(app)
 
 # 初始化redis实例变量
-# op_redis = Redis(host=config.REDIS_HOST, port=config.REDIS_PORT, password=config.REDIS_PASSWD)
+op_redis = Redis(host=config.REDIS_HOST, port=config.REDIS_PORT, password=config.REDIS_PASSWD)
 
 @app.route('/')
 def index():
@@ -31,11 +31,6 @@ def home():
     # 第二步：通过code获取 “网页授权access_token”
     code = request.args.get('code')
     print(code)
-
-    # oauth2_access_token = op_redis.get('oauth2_access_token')
-    # openid = op_redis.get('openid')
-    # print('------>', oauth2_access_token, openid)
-    # if oauth2_access_token is None or openid is None:
     source_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?'\
         +'appid={APPID}&secret={APPSECRET}&code={CODE}&grant_type=authorization_code'
     oauth2_url = source_url.format(APPID = config.APPID, APPSECRET = config.APPSECRET, CODE = code)
@@ -44,8 +39,6 @@ def home():
     print(data)
     oauth2_access_token = data['access_token']
     openid = data['openid']
-    # op_redis.set('oauth2_access_token', oauth2_access_token, px=data['expires_in'])
-    # op_redis.set('openid', openid, px=data['expires_in'])
 
     # 第三步：刷新access_token（如果需要）
 
@@ -81,20 +74,28 @@ def nation_flag():
 def get_wx_config():
     url = request.form.get('url')
 
-    # 第一步：获取 “普通access_token”
-    source_url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={APPID}&secret={APPSECRET}'
-    cgi_bin_url = source_url.format(APPID = config.APPID, APPSECRET = config.APPSECRET)
-    resp = requests.get(cgi_bin_url) # 请求api
-    data = eval(resp.text) # 将字符串转为字典
-    print(data)
-    cgi_bin_access_token = data['access_token']
+    cgi_bin_access_token = op_redis.get('cgi_bin_access_token')
+    jsapi_ticket = op_redis.get('jsapi_ticket')
+    print('------>', cgi_bin_access_token, jsapi_ticket)
 
-    # 第二步：获取 jsapi_ticket
-    source_url = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={ACCESS_TOKEN}&type=jsapi'
-    ticket_url = source_url.format(ACCESS_TOKEN = cgi_bin_access_token)
-    resp = requests.get(ticket_url) # 请求api
-    data = eval(resp.text) # 将字符串转为字典
-    jsapi_ticket = data['ticket']
+    if cgi_bin_access_token is None or jsapi_ticket is None:
+        # 第一步：获取 “普通access_token”
+        source_url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={APPID}&secret={APPSECRET}'
+        cgi_bin_url = source_url.format(APPID = config.APPID, APPSECRET = config.APPSECRET)
+        resp = requests.get(cgi_bin_url) # 请求api
+        data = eval(resp.text) # 将字符串转为字典
+        print(data)
+        cgi_bin_access_token = data['access_token']
+        op_redis.set('cgi_bin_access_token', cgi_bin_access_token, ex=data['expires_in'])
+
+        # 第二步：获取 jsapi_ticket
+        source_url = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={ACCESS_TOKEN}&type=jsapi'
+        ticket_url = source_url.format(ACCESS_TOKEN = cgi_bin_access_token)
+        resp = requests.get(ticket_url) # 请求api
+        data = eval(resp.text) # 将字符串转为字典
+        print(data)
+        jsapi_ticket = data['ticket']
+        op_redis.set('jsapi_ticket', jsapi_ticket, ex=data['expires_in'])
 
     # 第三步：签名算法
     # noncestr=Wm3WZYTPz0wzccnW
