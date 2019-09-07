@@ -4,12 +4,17 @@ from models import db, Barrage, UserRecord
 import config
 import requests
 from sign import Sign
+# from redis import Redis
 
 # 初始化flask实例
 app = Flask(__name__)
 app.config.from_object(config) # 从配置模块中导入配置
 
+# 配置数据库
 db.init_app(app)
+
+# 初始化redis实例变量
+# op_redis = Redis(host=config.REDIS_HOST, port=config.REDIS_PORT, password=config.REDIS_PASSWD)
 
 @app.route('/')
 def index():
@@ -26,6 +31,11 @@ def home():
     # 第二步：通过code获取 “网页授权access_token”
     code = request.args.get('code')
     print(code)
+
+    # oauth2_access_token = op_redis.get('oauth2_access_token')
+    # openid = op_redis.get('openid')
+    # print('------>', oauth2_access_token, openid)
+    # if oauth2_access_token is None or openid is None:
     source_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?'\
         +'appid={APPID}&secret={APPSECRET}&code={CODE}&grant_type=authorization_code'
     oauth2_url = source_url.format(APPID = config.APPID, APPSECRET = config.APPSECRET, CODE = code)
@@ -34,6 +44,8 @@ def home():
     print(data)
     oauth2_access_token = data['access_token']
     openid = data['openid']
+    # op_redis.set('oauth2_access_token', oauth2_access_token, px=data['expires_in'])
+    # op_redis.set('openid', openid, px=data['expires_in'])
 
     # 第三步：刷新access_token（如果需要）
 
