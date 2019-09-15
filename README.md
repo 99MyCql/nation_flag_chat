@@ -59,3 +59,9 @@ SUCCESS = 0
 FAIL = 1
 ERROR = 2
 ```
+
+### 启动
+
+```bash
+python app.py
+```

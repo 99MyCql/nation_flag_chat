@@ -27,9 +27,10 @@ $(function(){
       if(e.target._loop){ e.target.play(); }
     });
   }
+
   $("body").one(app.evtDown, function(){
     for(var i in app.sound){
-      if(!app.sound[i].load){ continue;  }
+      if(!app.sound[i].load) continue;
       app.sound[i].load();
     }
   });
@@ -107,34 +108,34 @@ $(function(){
   
 
   /***** 提示弹窗 *****/
-  function myAlert(info, callback){
-    var html='';
-    if(info===undefined){ info = ''; }
-    if(info===null){ info = 'null'; }
-    if(typeof(info)==='boolean'){ info= info?'true':'false'; }
-    html+='<div class="alert"><article>';
-    html+='<header>'+info+'</header>';
-    html+='<footer><a>确定</a></footer>';
-    html+='</article></div>';
-    html=$(html);
-    html.find('footer').on(app.evtClick, function(){
-      var div = $(this).parents('.alert');
-      div.addClass('alert_out');
-      setTimeout(function(){ 
-        div.remove();
-        if(typeof(callback)=='function'){ callback(); }
-      },350);
-    })
-    $('body').append(html);
-  }
-  
-  
+  // function myAlert(info, callback){
+  //   var html='';
+  //   if(info===undefined){ info = ''; }
+  //   if(info===null){ info = 'null'; }
+  //   if(typeof(info)==='boolean'){ info= info?'true':'false'; }
+  //   html+='<div class="alert"><article>';
+  //   html+='<header>'+info+'</header>';
+  //   html+='<footer><a>确定</a></footer>';
+  //   html+='</article></div>';
+  //   html=$(html);
+  //   html.find('footer').on(app.evtClick, function(){
+  //     var div = $(this).parents('.alert');
+  //     div.addClass('alert_out');
+  //     setTimeout(function(){ 
+  //       div.remove();
+  //       if(typeof(callback)=='function'){ callback(); }
+  //     },350);
+  //   })
+  //   $('body').append(html);
+  // }
+
+
   /***** 设置文档标题 *****/
   function setTitle(title){
     document.title = title;
   }
-  
-  
+
+
   /***** 滚动到底部 *****/
   function scrollBottom(speed, callback){
     console.log('=====scrollBottom()=====');
@@ -155,8 +156,8 @@ $(function(){
       }, 17);
     }
   }
-  
-  
+
+
   /***** s1 *****/
   $(".s1 footer").on(app.evtClick, 'i', function(){
     var num = parseInt($(this).text());
@@ -184,16 +185,21 @@ $(function(){
     }
   });
 
-  $(".s1 center a").one(app.evtClick, function(){
+  $(".s1 center a").one(app.evtClick, function() {
     $("html, body").css('background-color', '#fff');
     $(".s1").addClass('no_animation').transit({x:'-100%'}, 300, function(){ $(this).remove(); });
     $(".s2, .s2input").css({display:'block', x:'100%'}).transit({x:0}, 300);
-    setTimeout(function(){ if(stop == true) return;playPage2(); app.sound.bg.play();  }, 350);
+    setTimeout(function() {
+      if(stop == true) return;
+      playPage2();
+      app.sound.bg.play();
+    }, 350);
   });
-  
-  
+
+
   /***** s2 *****/
   var stop = false;
+
   function playPage2() {
     console.log('=====playPage2()=====');
     // 如果设置了暂停，则退出
@@ -395,10 +401,12 @@ $(function(){
     }
     wx_share();
   }
-  
-  
+
+
   /***** 应用开始 *****/
-  function appBegin(){
+  function appBegin() {
+    console.log('appBegin');
+    // 设置用户信息
     var sty;
     sty = '<style>\n';
     sty += 'body .user0 { background-image: url('+app.user.head+'); }\n';
@@ -407,7 +415,6 @@ $(function(){
     sty += 'body .user_prev {  background: url('+app.user_prev.head+') no-repeat 0 0 / 100% 100%; }\n';
     sty += 'body .user_prev:after { content: "'+app.user_prev.name+'";}\n';
     sty += '</style>';
-
     $("head").append(sty);
     $("img").each(function(){ $(this).attr('assetUrl') && $(this).attr('src', $(this).attr('assetUrl')); });
     $(".s4 figure").attr('class', 'type'+(app.weixin?1:2));
@@ -416,5 +423,7 @@ $(function(){
       $(".s1").show();
     });
   };
+
+
   window.appBegin=appBegin;
 });

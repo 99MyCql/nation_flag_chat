@@ -16,26 +16,27 @@
   <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
   <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/barrage.css') }}">
 
-  <script type="text/javascript" src="{{ url_for('static', filename='js/loader.js') }}"></script>
+  <!-- <script type="text/javascript" src="{{ url_for('static', filename='js/loader.js') }}"></script> -->
   <script type="text/javascript">
     var app = { useSystemScroll: false };
-    
+
     //此处修改用户头像
     headimgurl = "{{ userinfo.headimgurl }}";
-    
+
     app._load_head = headimgurl == "undefined" ? "{{ url_for('static', filename='img/user0.jpg') }}" : headimgurl;
-    console.log(app._load_head)
+    console.log('app._load_head:', app._load_head)
     window.addEventListener('touchmove', function(e){ !app.useSystemScroll && e.preventDefault(); }, false);
     window.addEventListener('load', function(){
-      var myload = new loader('.asset');
-      var loadTxt = document.querySelector('.asset ._load var');
-      document.querySelector('body').style.fontSize=window.innerWidth/320*12+'px';
-      myload.onLoading=function(p){
-        loadTxt.innerText = Math.floor(p*100)+'%'
-        if(p<1){ return; }
-        setTimeout(function(){ appBegin(); }, 1000);
-      }
-      setTimeout(function(){ myload.load(); }, 100);
+      // var myload = new loader('.asset');
+      // var loadTxt = document.querySelector('.asset ._load var');
+      document.querySelector('body').style.fontSize = window.innerWidth/320*12+'px';
+      // myload.onLoading=function(p){
+      //   loadTxt.innerText = Math.floor(p*100)+'%'
+      //   if(p<1){ return; }
+      //   setTimeout(function(){ appBegin(); }, 1000);
+      // }
+      // setTimeout(function(){ myload.load(); }, 100);
+      appBegin();
     }, false);
   </script>
   <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.1.1.min.js') }}"></script>
@@ -44,11 +45,11 @@
   <script type="text/javascript" src="{{ url_for('static', filename='js/barrage.js') }}"></script>
   <script type="text/javascript" src="{{ url_for('static', filename='js/questions.js') }}"></script>
   <script type="text/javascript" src="{{ url_for('static', filename='js/wx_manage.js') }}"></script>
-  <!-- <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script> 与下面加载冲突-->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
 </head>
 
 <body class="nowx">
-  <div class="asset">
+  <!-- <div class="asset">
     <div class="_list">
       <link asseturl="{{ url_for('static', filename='css/main.css') }}">
       <script asseturl="{{ url_for('static', filename='js/jquery-2.1.1.min.js') }}"></script>
@@ -69,12 +70,11 @@
         if(!navigator.userAgent.match(/micromessenger/i)){ document.querySelector('body').setAttribute('class', 'nowx'); }
       </script>
     </div>
-  </div>
+  </div> -->
 
   <div id="userinfo" style="display: none">{{ userinfo }}</div>
 
   <div class="wrapper">
-    
     <section class="s1">
       <header>
         <h3>输入2019，进入群聊</h3>
@@ -722,10 +722,5 @@
     </section>
     
   </div>
-
-  <!--loading-->
-  <!-- <div class="loading">
-    <center><i></i></center>
-  </div> -->
 </body>
 </html>

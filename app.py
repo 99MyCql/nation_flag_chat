@@ -64,6 +64,11 @@ def home():
     # record = UserRecord.query.filter(Barrage.username == username).first()
     return render_template('index.html', userinfo = userinfo)
 
+# 选择界面
+@app.route('/choose')
+def choose():
+    return render_template('choose.html')
+
 # 升旗界面
 @app.route('/nation_flag')
 def nation_flag():

@@ -3,7 +3,7 @@ function question1(answer) {
     $(".s2 li:hidden[href='wait']:first").remove();
     return `
       <li delay="5.5">
-        <h2 class="user7"></h2>
+        <h2 class="user18"></h2>
         <p>
         <b>【五星红旗的礼仪】</b>
         <br><br>
@@ -19,7 +19,7 @@ function question1(answer) {
     $(".s2 li:hidden[href='wait']:first").remove();
     return `
       <li delay="5.5">
-        <h2 class="user7"></h2>
+        <h2 class="user18"></h2>
         <p>
         <b>【五星红旗的设计内涵和制式规范】</b>
         <br><br>
@@ -42,7 +42,7 @@ function question2(answer) {
     $(".s2 li:hidden[href='wait']:first").remove();
     return `
       <li delay="5.5">
-        <h2 class="user7"></h2>
+        <h2 class="user18"></h2>
         <p>
         回答正确！
         <br><br>
@@ -56,7 +56,7 @@ function question2(answer) {
     $(".s2 li:hidden[href='wait']:first").remove();
     return `
       <li delay="5.5">
-        <h2 class="user7"></h2>
+        <h2 class="user18"></h2>
         <p>
         回答错咯~
         <br><br>
@@ -74,7 +74,7 @@ function question3(answer) {
     $(".s2 li:hidden[href='wait']:first").remove();
     return `
       <li delay="7.5">
-        <h2 class="user7"></h2>
+        <h2 class="user18"></h2>
         <p>
         <b>【登珠峰之险】</b>
         <br><br>
@@ -92,7 +92,7 @@ function question3(answer) {
     $(".s2 li:hidden[href='wait']:first").remove();
     return `
       <li delay="5.5">
-        <h2 class="user7"></h2>
+        <h2 class="user18"></h2>
         <p>
         <b>【登顶成就】</b>
         <br><br>
@@ -108,7 +108,7 @@ function question3(answer) {
     $(".s2 li:hidden[href='wait']:first").remove();
     return `
       <li delay="5.5">
-        <h2 class="user7"></h2>
+        <h2 class="user18"></h2>
         <p>
         <b>【登顶意义】</b>
         <br><br>
@@ -131,7 +131,7 @@ function question4(answer) {
     $(".s2 li:hidden[href='wait']:first").remove();
     return `
       <li delay="3.5">
-        <h2 class="user7"></h2>
+        <h2 class="user18"></h2>
         <p>
         回答正确！
         <br><br>
@@ -143,7 +143,7 @@ function question4(answer) {
     $(".s2 li:hidden[href='wait']:first").remove();
     return `
       <li delay="3.5">
-        <h2 class="user7"></h2>
+        <h2 class="user18"></h2>
         <p>
         回答错咯~
         <br><br>
@@ -159,7 +159,7 @@ function question5(answer) {
     $(".s2 li:hidden[href='wait']:first").remove();
     return `
       <li delay="3.5">
-        <h2 class="user7"></h2>
+        <h2 class="user18"></h2>
         <p>
         回答正确！
         <br><br>
@@ -173,7 +173,7 @@ function question5(answer) {
     $(".s2 li:hidden[href='wait']:first").remove();
     return `
       <li delay="3.5">
-        <h2 class="user7"></h2>
+        <h2 class="user18"></h2>
         <p>
         回答错咯~
         <br><br>

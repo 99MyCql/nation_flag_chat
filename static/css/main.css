@@ -56,16 +56,26 @@
 .ico11 { background-position-y: 100%;}
 
 
-/*user*/
-/* [class^='user'], [class*=' user'] { background-image: url(../img/user.jpg); background-position-y: 9999%;} */
-.user0 { background-size: 100% 100%; background-image: url(../img/user0.jpg);}
-.user1 { background-size: 100% 100%; background-image: url(../img/user1.jpg);}
-.user2 { background-size: 100% 100%; background-image: url(../img/user2.png);}
-.user3 { background-size: 100% 100%; background-image: url(../img/user3.jpg);}
-.user4 { background-size: 100% 100%; background-image: url(../img/user4.jpg);}
-.user5 { background-size: 100% 100%; background-image: url(../img/user5.jpg);}
-.user6 { background-size: 100% 100%; background-image: url(../img/user6.jpg);}
-.user7 { background-size: 100% 100%; background-image: url(../img/user7.jpg);}
+/*userimg*/
+.user1 { background-size: 100% 100%; background-image: url(../img/userimg/user1.jpg);}
+.user2 { background-size: 100% 100%; background-image: url(../img/userimg/user2.png);}
+.user3 { background-size: 100% 100%; background-image: url(../img/userimg/user3.jpg);}
+.user4 { background-size: 100% 100%; background-image: url(../img/userimg/user4.jpg);}
+.user5 { background-size: 100% 100%; background-image: url(../img/userimg/user5.jpg);}
+.user6 { background-size: 100% 100%; background-image: url(../img/userimg/user6.jpg);}
+.user7 { background-size: 100% 100%; background-image: url(../img/userimg/user7.jpg);}
+.user8 { background-size: 100% 100%; background-image: url(../img/userimg/user8.jpg);}
+.user9 { background-size: 100% 100%; background-image: url(../img/userimg/user9.jpg);}
+.user10 { background-size: 100% 100%; background-image: url(../img/userimg/user10.jpg);}
+.user11 { background-size: 100% 100%; background-image: url(../img/userimg/user11.jpg);}
+.user12 { background-size: 100% 100%; background-image: url(../img/userimg/user12.jpg);}
+.user13 { background-size: 100% 100%; background-image: url(../img/userimg/user13.jpg);}
+.user14 { background-size: 100% 100%; background-image: url(../img/userimg/user14.jpg);}
+.user15 { background-size: 100% 100%; background-image: url(../img/userimg/user15.jpg);}
+.user16 { background-size: 100% 100%; background-image: url(../img/userimg/user16.jpg);}
+.user17 { background-size: 100% 100%; background-image: url(../img/userimg/user17.jpg);}
+.user18 { background-size: 100% 100%; background-image: url(../img/userimg/user18.jpg);}
+.user19 { background-size: 100% 100%; background-image: url(../img/userimg/user19.jpg);}
 
 
 
@@ -150,13 +160,25 @@
 .s2 li h2 { float: left; position: relative; width: 3em; height: 3em; margin: -1.3em 0 0 -4em; }
 .s2 li h2:after { position: absolute; top: 0; left: 100%; margin-left: 32%; font-size: 0.9em; color: #666; line-height: 1.2em; white-space: nowrap;}
 
+/* username */
 .s2 li .user1:after { content: "晓南";}
 .s2 li .user2:after { content: "晓航";}
-.s2 li .user3:after { content: "郑永安";}
-.s2 li .user4:after { content: "聂宏";}
-.s2 li .user5:after { content: "李雷";}
-.s2 li .user6:after { content: "韩梅梅";}
-.s2 li .user7:after { content: "小百科";}
+.s2 li .user3:after { content: "一院";}
+.s2 li .user4:after { content: "二院";}
+.s2 li .user5:after { content: "三院";}
+.s2 li .user6:after { content: "四院";}
+.s2 li .user7:after { content: "五院";}
+.s2 li .user8:after { content: "六院";}
+.s2 li .user9:after { content: "七院";}
+.s2 li .user10:after { content: "八院";}
+.s2 li .user11:after { content: "九院";}
+.s2 li .user12:after { content: "十院";}
+.s2 li .user13:after { content: "十一院";}
+.s2 li .user14:after { content: "十二院";}
+.s2 li .user15:after { content: "十五院";}
+.s2 li .user16:after { content: "十六院";}
+.s2 li .user17:after { content: "十八院";}
+.s2 li .user18:after { content: "小百科";}
 
 .s2 li.my { padding-top: 0.1em;}
 .s2 li.my h2 { float: right; margin: 0 -4em 0 0; }

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>今日我们都是护旗手</title>
+  <script src="/static/js/jquery-2.1.1.min.js"></script>
+</head>
+<style type="text/css">
+/* body */
+body {
+  margin: 0px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+/* 加载 */
+.loading{
+  width:100%;
+  /* height: 100%; */
+  position: fixed;
+  top:0;
+  left: 0;
+  z-index: 1000;
+}
+.footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+.card {
+  width: 100%;
+  display: block;
+  border-bottom: 0.1px solid;
+  border-color: #ebebeb;
+}
+.card:active {
+  background-color: #ebebeb;
+}
+a {
+  text-decoration: none;
+}
+</style>
+
+<body>
+  <script>
+  document.onreadystatechange=function(){
+    console.log(document.readyState);
+    if(document.readyState=="complete") {
+      $(".loading").fadeOut();
+    }
+  }
+  </script>
+  <img class="loading" src="/static/img/weixin_home.jpeg" alt="">
+  <!-- loading -->
+
+  <a href="/"><img class="card" src="/static/img/weixin_card.png" alt=""></a>
+  <img class="card" src="/static/img/weixin_card.png" alt="">
+  <img class="card" src="/static/img/weixin_card.png" alt="">
+  <img class="card" src="/static/img/weixin_card.png" alt="">
+
+  <img class="footer" src="/static/img/weixin_footer.png" alt="">
+
+<script>
+</script>
+</body>
+</html>
