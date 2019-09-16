@@ -46,12 +46,12 @@
     <!-- 正文对话 -->
     <section class="s2">
       <ul>
-        <!-- delay 属性指当前话要停留多少秒 -->
+        {% if not first %}
         <li delay="0.5">
           <center><span class="innerTime">10月1日</span></center>
         </li>
         <li delay="1">
-          <center><span>晓南、晓航邀请你和一院、二院、三院、四院、五院、六院、七院、八院、九院、十院、十一院、十二院、十五院、十六院、十八院等加入群聊</span></center>
+          <center><span>晓南、晓航邀请你和航小宇、紫冬、电子四阿哥、小吾愿、材宝、七宝、锦小理、经管小九九、阿拾、小艺航小宇、小in、小吾愿、小石榴材宝、小致锦小理等加入群聊</span></center>
         </li>
         <li delay="2">
           <center><span>晓南修改群名为“{{ title }}”</span></center>
@@ -101,55 +101,16 @@
           <h2 class="user1"></h2>
           <p>那我们开始吧~</p>
         </li>
+        {% endif %}
 
         {% block content %}
         {% endblock %}
 
-        <li delay="5">
-          <center><span><a href="/choose" style="text-decoration: none;color: white;">返回，选择下一个场景</a></span></center>
+        <li delay="1" style="margin-top: 1.5em;">
+          <center><span><a href="/choose" style="text-decoration: none;color: white;">返回，进入下一个群聊</a></span></center>
         </li>
-        <!-- 8、南航中国梦 -->
-        <li delay="5.5">
-          <h2 class="user2"></h2>
-          <p>其实我们在升国旗的同时，也是在升起对未来的希望，坚定内心的信仰。镜头回到今天，回到当下，1952年建校以来，鲜艳的五星红旗引领、激励着南航“负重奋进、志在超越”，学校取得了跨越式的发展，一代代南航人茁壮成长，在祖国的各个岗位上奉献着自己青春。</p>
-        </li>
-        <li delay="6">
-          <h2 class="user2"></h2>
-          <figure>
-          <video controls="controls" style="width: 90%;">
-            <source src="http://pwvmh4cz5.bkt.clouddn.com/%E5%8D%97%E8%88%AA%E5%8D%87%E5%9B%BD%E6%97%97.mp4" type="video/mp4" >
-          </video>
-          </figure>
-        </li>
-        <li delay="3.5">
-          <h2 class="user1"></h2>
-          <p>进入新时代，南航也将坚定不移地朝着航空航天民航特色鲜明的世界一流大学目标努力奋进，为实现中华民族伟大复兴的中国梦做出新的更大的贡献！</p>
-        </li>
-        <li delay="3.5">
-          <h2 class="user1"></h2>
-          <p>70年来，五星红旗一次次高高飘扬，展示了国家的尊严、凝聚了人民的力量，也见证了中华民族从站起来、富起来到强起来的复兴之路。</p>
-        </li>
-        <li delay="3.5">
-          <h2 class="user2"></h2>
-          <p>少年强则国家强，一代人有一代人的长征路。让我们勇敢肩负起时代赋予的重任，努力在实现中华民族伟大复兴的中国梦中放飞青春梦想。</p>
-        </li>
-        <li delay="1.5">
-          <h2 class="user2"></h2>
-          <p>“效法羲和驭天马，志在长空牧群星”。</p>
-        </li>
-        <li delay="3.5" href="bless">
-          <h2 class="user1"></h2>
-          <p>翠屏山下，五星红旗飘扬的南航校园，无数南航学子将矢志不渝，为实现南航梦中国梦拼搏奋斗！现在就让我们来写下对南航、对祖国的祝福吧~</p>
-        </li>
-        <li href="wait">
-        </li>
-        <li delay="1.5">
-          <h2 class="user2"></h2>
-          <p>最后快来点击链接，成为护旗手吧！</p>
-        </li>
-        <li delay="1.5">
-          <h2 class="user2"></h2>
-          <figure><a href="/nation_flag"><img id="nation_flag" src="/static/img/nation_flag_card.png" width="100%"></a></figure>
+        <li delay="1">
+          <center><span><a href="/scene8" style="text-decoration: none;color: white;">留言祝福，升国旗</a></span></center>
         </li>
       </ul>
     </section>

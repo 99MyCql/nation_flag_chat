@@ -116,7 +116,10 @@ def scene1():
     if userinfo is None:
         return redirect('/') # 重定向
     else:
-        return render_template('scene1.html', userinfo = userinfo, title = '历史初登场')
+        first = session.get('first')
+        if first is None:
+            session['first'] = 'no'
+        return render_template('scene1.html', userinfo = userinfo, title = '历史初登场', first = first)
 
 # 场景2界面
 @app.route('/scene2')
@@ -125,7 +128,10 @@ def scene2():
     if userinfo is None:
         return redirect('/') # 重定向
     else:
-        return render_template('scene2.html', userinfo = userinfo, title = '历史“最高峰”')
+        first = session.get('first')
+        if first is None:
+            session['first'] = 'no'
+        return render_template('scene2.html', userinfo = userinfo, title = '历史“最高峰”', first = first)
 
 # 场景3界面
 @app.route('/scene3')
@@ -134,7 +140,10 @@ def scene3():
     if userinfo is None:
         return redirect('/') # 重定向
     else:
-        return render_template('scene3.html', userinfo = userinfo, title = '与世界会面')
+        first = session.get('first')
+        if first is None:
+            session['first'] = 'no'
+        return render_template('scene3.html', userinfo = userinfo, title = '与世界会面', first = first)
 
 # 场景4界面
 @app.route('/scene4')
@@ -143,7 +152,10 @@ def scene4():
     if userinfo is None:
         return redirect('/') # 重定向
     else:
-        return render_template('scene4.html', userinfo = userinfo, title = '红金色荣光')
+        first = session.get('first')
+        if first is None:
+            session['first'] = 'no'
+        return render_template('scene4.html', userinfo = userinfo, title = '红金色荣光', first = first)
 
 # 场景5界面
 @app.route('/scene5')
@@ -152,7 +164,10 @@ def scene5():
     if userinfo is None:
         return redirect('/') # 重定向
     else:
-        return render_template('scene5.html', userinfo = userinfo, title = '七子初回归')
+        first = session.get('first')
+        if first is None:
+            session['first'] = 'no'
+        return render_template('scene5.html', userinfo = userinfo, title = '七子初回归', first = first)
 
 # 场景6界面
 @app.route('/scene6')
@@ -161,7 +176,10 @@ def scene6():
     if userinfo is None:
         return redirect('/') # 重定向
     else:
-        return render_template('scene6.html', userinfo = userinfo, title = '向宇宙进发')
+        first = session.get('first')
+        if first is None:
+            session['first'] = 'no'
+        return render_template('scene6.html', userinfo = userinfo, title = '向宇宙进发', first = first)
 
 # 场景7界面
 @app.route('/scene7')
@@ -170,7 +188,22 @@ def scene7():
     if userinfo is None:
         return redirect('/') # 重定向
     else:
-        return render_template('scene7.html', userinfo = userinfo, title = '中国香港人')
+        first = session.get('first')
+        if first is None:
+            session['first'] = 'no'
+        return render_template('scene7.html', userinfo = userinfo, title = '中国香港加油', first = first)
+
+# 场景8界面
+@app.route('/scene8')
+def scene8():
+    userinfo = session.get('userinfo')
+    if userinfo is None:
+        return redirect('/') # 重定向
+    else:
+        first = session.get('first')
+        if first is None:
+            session['first'] = 'no'
+        return render_template('scene8.html', userinfo = userinfo, title = '升国旗', first = first)
 
 # 升旗界面
 @app.route('/nation_flag')

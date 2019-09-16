@@ -75,7 +75,8 @@
 .user16 { background-size: 100% 100%; background-image: url(../img/userimg/user16.jpg);}
 .user17 { background-size: 100% 100%; background-image: url(../img/userimg/user17.jpg);}
 .user18 { background-size: 100% 100%; background-image: url(../img/userimg/user18.jpg);}
-.user19 { background-size: 100% 100%; background-image: url(../img/userimg/user19.jpg);}
+.user19 { background-size: 100% 100%; background-image: url(../img/userimg/user4.jpg);}
+.user20 { background-size: 100% 100%; background-image: url(../img/userimg/user15.jpg);}
 
 
 
@@ -120,7 +121,7 @@
 
 /***** s2 *****/
 .s2 { background: #ebebeb; padding-bottom: 13%;}
-.s2 ul { padding: 1.5em 1em 4em; }
+.s2 ul { padding: 1.5em 1em 2em; }
 .s2 li { display: none; position: relative; padding: 1.3em 4em; }
 .s2 li:after { content: ""; display: block; clear: both; height: 0;}
 .s2 li center { margin: -1.6em -3.5em 0;}
@@ -163,22 +164,25 @@
 /* username */
 .s2 li .user1:after { content: "晓南";}
 .s2 li .user2:after { content: "晓航";}
-.s2 li .user3:after { content: "一院";}
-.s2 li .user4:after { content: "二院";}
-.s2 li .user5:after { content: "三院";}
-.s2 li .user6:after { content: "四院";}
-.s2 li .user7:after { content: "五院";}
-.s2 li .user8:after { content: "六院";}
-.s2 li .user9:after { content: "七院";}
-.s2 li .user10:after { content: "八院";}
-.s2 li .user11:after { content: "九院";}
-.s2 li .user12:after { content: "十院";}
-.s2 li .user13:after { content: "十一院";}
-.s2 li .user14:after { content: "十二院";}
-.s2 li .user15:after { content: "十五院";}
-.s2 li .user16:after { content: "十六院";}
-.s2 li .user17:after { content: "十八院";}
+/* 航小宇3、小能4 + 小动19、紫冬5、电子四阿哥6、小吾愿7、材宝8、七宝9、锦小理10、经管小九九11、阿拾12、小艺13、小in14、巡巡15+天天20、小石榴材宝16、小致17 */
+.s2 li .user3:after { content: "航小宇";}
+.s2 li .user4:after { content: "小能";}
+.s2 li .user5:after { content: "紫冬";}
+.s2 li .user6:after { content: "电子四阿哥";}
+.s2 li .user7:after { content: "小吾愿";}
+.s2 li .user8:after { content: "材宝";}
+.s2 li .user9:after { content: "七宝";}
+.s2 li .user10:after { content: "锦小理";}
+.s2 li .user11:after { content: "经管小九九";}
+.s2 li .user12:after { content: "阿拾";}
+.s2 li .user13:after { content: "小艺";}
+.s2 li .user14:after { content: "小in";}
+.s2 li .user15:after { content: "巡巡";}
+.s2 li .user16:after { content: "小石榴材宝";}
+.s2 li .user17:after { content: "小致";}
 .s2 li .user18:after { content: "小百科";}
+.s2 li .user19:after { content: "小动";}
+.s2 li .user20:after { content: "天天";}
 
 .s2 li.my { padding-top: 0.1em;}
 .s2 li.my h2 { float: right; margin: 0 -4em 0 0; }
