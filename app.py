@@ -1,5 +1,5 @@
 # encoding=utf-8
-from flask import Flask, render_template, url_for, jsonify, request, redirect
+from flask import Flask, render_template, url_for, jsonify, request, redirect, session
 from models import db, Barrage, UserRecord
 import config
 import requests
@@ -45,8 +45,8 @@ def home():
     # 第四步：拉取用户信息(需scope为 snsapi_userinfo)
     source_url = 'https://api.weixin.qq.com/sns/userinfo'\
         + '?access_token={ACCESS_TOKEN}&openid={OPENID}&lang=zh_CN'
-    useinfo_url = source_url.format(ACCESS_TOKEN = oauth2_access_token, OPENID = openid)
-    resp = requests.get(useinfo_url) # 请求api
+    userinfo_url = source_url.format(ACCESS_TOKEN = oauth2_access_token, OPENID = openid)
+    resp = requests.get(userinfo_url) # 请求api
     resp.encoding = 'utf-8'
     data = eval(resp.text)
     print(data)
@@ -67,12 +67,72 @@ def home():
 # 选择界面
 @app.route('/choose')
 def choose():
+    userinfo = session.get('userinfo')
+    if userinfo != None:
+        return render_template('choose.html')
+
+    # 第二步：通过code获取 “网页授权access_token”
+    code = request.args.get('code')
+    print(code)
+    source_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?'\
+        +'appid={APPID}&secret={APPSECRET}&code={CODE}&grant_type=authorization_code'
+    oauth2_url = source_url.format(APPID = config.APPID, APPSECRET = config.APPSECRET, CODE = code)
+    resp = requests.get(oauth2_url) # 请求api
+    data = eval(resp.text) # 将字符串转为字典
+    print(data)
+    oauth2_access_token = data['access_token']
+    openid = data['openid']
+
+    # 第三步：刷新access_token（如果需要）
+
+    # 第四步：拉取用户信息(需scope为 snsapi_userinfo)
+    source_url = 'https://api.weixin.qq.com/sns/userinfo'\
+        + '?access_token={ACCESS_TOKEN}&openid={OPENID}&lang=zh_CN'
+    userinfo_url = source_url.format(ACCESS_TOKEN = oauth2_access_token, OPENID = openid)
+    resp = requests.get(userinfo_url) # 请求api
+    resp.encoding = 'utf-8'
+    data = eval(resp.text)
+    print(data)
+    userinfo = {
+        'nickname': data['nickname'],
+        'sex': data['sex'],
+        'province': data['province'],
+        'city': data['city'],
+        'country': data['country'],
+        'headimgurl': data['headimgurl']
+    }
+    print(userinfo)
+    session['userinfo'] = userinfo
+
     return render_template('choose.html')
+
+# 场景1界面
+@app.route('/scene1')
+def scene1():
+    userinfo = session.get('userinfo')
+    if userinfo is None:
+        return redirect('/') # 重定向
+    else:
+        return render_template('scene1.html', userinfo = userinfo)
+
+# 场景2界面
+@app.route('/scene2')
+def scene2():
+    userinfo = session.get('userinfo')
+    if userinfo is None:
+        return redirect('/') # 重定向
+    else:
+        return render_template('scene2.html', userinfo = userinfo)
 
 # 升旗界面
 @app.route('/nation_flag')
 def nation_flag():
     return render_template('nation_flag.html')
+
+
+'''
+api接口
+'''
 
 # 获取 wx.config
 @app.route('/get_wx_config', methods=['POST'])

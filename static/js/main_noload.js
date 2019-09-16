@@ -1,3 +1,7 @@
+/**
+ * 不需要加载、输密码界面，直接进入群聊。
+ * 在index[0-9]*.html中使用
+ */
 $(function(){
   /***** 全局参数 *****/
   var app = window.app || {};
@@ -56,6 +60,7 @@ $(function(){
     resizes[j].style.lineHeight=parseInt(resizes[j].style.lineHeight)*scaleH+'px';
   }
 
+
   /***** 获取用户信息 *****/
   var userinfo = $('#userinfo').text();
   console.log(userinfo);
@@ -63,14 +68,6 @@ $(function(){
   userinfo = JSON.parse(userinfo);
   userinfo['headimgurl'] = userinfo.headimgurl.replace(/\\\//g, '/');
   console.log(userinfo);
-
-
-  /***** 获取URL参数 *****/
-  // function GetQueryString(name) {
-  //   var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i");
-  //   var r = window.location.search.substr(1).match(reg);
-  //   if (r!=null) return decodeURIComponent(r[2]); return null;
-  // }
 
 
   /***** 自定义tap事件 *****/
@@ -108,29 +105,6 @@ $(function(){
   }
 
 
-  /***** 提示弹窗 *****/
-  // function myAlert(info, callback){
-  //   var html='';
-  //   if(info===undefined){ info = ''; }
-  //   if(info===null){ info = 'null'; }
-  //   if(typeof(info)==='boolean'){ info= info?'true':'false'; }
-  //   html+='<div class="alert"><article>';
-  //   html+='<header>'+info+'</header>';
-  //   html+='<footer><a>确定</a></footer>';
-  //   html+='</article></div>';
-  //   html=$(html);
-  //   html.find('footer').on(app.evtClick, function(){
-  //     var div = $(this).parents('.alert');
-  //     div.addClass('alert_out');
-  //     setTimeout(function(){ 
-  //       div.remove();
-  //       if(typeof(callback)=='function'){ callback(); }
-  //     },350);
-  //   })
-  //   $('body').append(html);
-  // }
-
-
   /***** 设置文档标题 *****/
   function setTitle(title){
     document.title = title;
@@ -159,54 +133,9 @@ $(function(){
   }
 
 
-  /***** s1 *****/
-  $(".s1 footer").on(app.evtClick, 'i', function(){
-    var num = parseInt($(this).text());
-    var tid = $(".s1 header h4 i:empty:first").index();
-    if(tid<0){ tid = $(".s1 header h4 i").length; }
-    if($(this).index()==11){
-      $(".s1 header h4 i").eq(tid-1).empty();
-    }else if(!isNaN(num)){
-      $(".s1 header h4 i").eq(tid).text(num);
-      if(tid<$(".s1 header h4 i").length-1){ return; }
-      //设置群聊密码
-      if($(".s1 header h4").text()=='2019') { 
-        $(".s1 footer").off(app.evtClick);
-        setTimeout(function() {
-          setTitle("今日我们都是护旗手"); // 设置标题
-        }, 2500)
-
-        // 创建点击事件触发该点击函数（下一个函数）
-        setTimeout(function() {
-          $(".s1 center a").trigger(app.evtClick);
-        }, 600);
-      } else {
-        $(".s1 header h4").transit({x: '6%'}, 60)
-          .transit({x: '-6%'}, 60)
-          .transit({x: '4%'}, 60)
-          .transit({x: '-3%'}, 60)
-          .transit({x: '0%'}, 60)
-      }
-    }
-  });
-
-
-  $(".s1 center a").one(app.evtClick, function() {
-    $("html, body").css('background-color', '#fff');
-    $(".s1").addClass('no_animation').transit({x:'-100%'}, 300, function(){ $(this).remove(); });
-    $(".s2, .s2input").css({display:'block', x:'100%'}).transit({x:0}, 300);
-    setTimeout(function() {
-      if(stop == true) return;
-      playPage2();
-      app.sound.bg.play();
-    }, 350);
-  });
-
-
   /***** s2 *****/
   var stop = false;
 
-  // 显示一条对话信息
   function playPage2() {
     console.log('=====playPage2()=====');
     // 如果设置了暂停，则退出
@@ -345,41 +274,29 @@ $(function(){
     }
   });
 
+
   // 如果是微信内置浏览器打开，获取并设置用户信息
   if(app.weixin){
-    // 从资源加载列表的ms_ms_self一项中，获取用户信息
-    var nickname = $(".ms_ms_self").attr("data-id");
-    var headimgurl = $(".ms_ms_self").attr("data-imgurl");
+    // 获取用户信息
+    var nickname = userinfo.nickname;
+    var headimgurl = userinfo.headimgurl;
     if(nickname != "undefined" && headimgurl != "undefined"){
       app.user = {
         name: nickname,
         head: headimgurl
       }
-    } else {
+    }else{
       app.user = {
         name: 'null',
         head: '../img/userimg/user0.jpg'
       }
     }
-  } else {
+  }else{
     app.user = {
       name: 'null',
       head: '../img/userimg/user0.jpg'
     }
   }
-
-
-  // if(GetQueryString('pre_user_name') && GetQueryString('pre_user_head')){
-  //   app.user_prev = {
-  //     name: decodeURIComponent(GetQueryString('pre_user_name')),
-  //     head: GetQueryString('pre_user_head')
-  //   }
-  // }else{
-  //   app.user_prev = {
-  //     name: 'Sky_da',
-  //     head: 'img/user_prev.jpg'
-  //   }
-  // }
 
 
   /******* 分享设置 *********/
@@ -407,24 +324,21 @@ $(function(){
 
   /***** 应用开始 *****/
   function appBegin() {
-    console.log('appBegin()');
-    // 设置用户信息的显示
+    console.log('appBegin');
+    // 设置用户信息
     var sty;
     sty = '<style>\n';
     sty += 'body .user0 { background-image: url('+app.user.head+'); }\n';
     sty += 'body .user0:after { content: "'+app.user.name+'";}\n';
     sty += 'body .my_name:before { content: "'+app.user.name+'"; }\n';
-    // sty += 'body .user_prev {  background: url('+app.user_prev.head+') no-repeat 0 0 / 100% 100%; }\n';
-    // sty += 'body .user_prev:after { content: "'+app.user_prev.name+'";}\n';
     sty += '</style>';
     $("head").append(sty);
-    // 图片加载
-    $("img").each(function(){ $(this).attr('assetUrl') && $(this).attr('src', $(this).attr('assetUrl')); });
-    $(".s4 figure").attr('class', 'type'+(app.weixin?1:2));
-    $(".asset").transit({opacity:0}, 300, 'linear', function(){
-      $(this).remove();
-      $(".s1").show();
-    });
+    $(".s2, .s2input").css({display:'block', x:'100%'}).transit({x:0}, 300);
+    setTimeout(function() {
+      if(stop == true) return;
+      playPage2();
+      app.sound.bg.play();
+    }, 350);
   };
 
 

@@ -20,13 +20,15 @@
   <script type="text/javascript">
     var app = { useSystemScroll: false };
     
-    //此处修改用户头像
+    // 此处修改用户头像
     headimgurl = "{{ userinfo.headimgurl }}";
     
+    // 设置加载区中部的用户头像
     app._load_head = headimgurl == "undefined" ? "{{ url_for('static', filename='img/user0.jpg') }}" : headimgurl;
     console.log(app._load_head)
     window.addEventListener('touchmove', function(e){ !app.useSystemScroll && e.preventDefault(); }, false);
-    window.addEventListener('load', function(){
+    window.addEventListener('load', function() {
+      // 导入loader.js
       var myload = new loader('.asset');
       var loadTxt = document.querySelector('.asset ._load var');
       document.querySelector('body').style.fontSize=window.innerWidth/320*12+'px';
@@ -44,11 +46,12 @@
   <script type="text/javascript" src="{{ url_for('static', filename='js/barrage.js') }}"></script>
   <script type="text/javascript" src="{{ url_for('static', filename='js/questions.js') }}"></script>
   <script type="text/javascript" src="{{ url_for('static', filename='js/wx_manage.js') }}"></script>
-  <!-- <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script> 与下面加载冲突-->
 </head>
 
 <body class="nowx">
+  <!-- 加载页面 -->
   <div class="asset">
+    <!-- 资源列表 -->
     <div class="_list">
       <link asseturl="{{ url_for('static', filename='css/main.css') }}">
       <script asseturl="{{ url_for('static', filename='js/jquery-2.1.1.min.js') }}"></script>
@@ -60,21 +63,25 @@
       <img asseturl="{{ url_for('static', filename='img/input.png') }}">
       <img asseturl="{{ url_for('static', filename='img/hand.png') }}">
 
+      <!-- 用于在main.js中获取用户信息 -->
       <span class="ms_ms_self" data-id="{{ userinfo.nickname }}" data-imgurl="{{ userinfo.headimgurl }}" ></span>
     </div>
+
     <div class="_load">
       <center><sub></sub><sup></sup><em style="background-image: url('/static/img/user1.ico');"></em><var>0%</var></center>
       <script>
+        // 在加载时显示头像
         document.querySelector('.asset ._load em').setAttribute('style', 'background-image: url('+app._load_head+');');
         if(!navigator.userAgent.match(/micromessenger/i)){ document.querySelector('body').setAttribute('class', 'nowx'); }
       </script>
     </div>
   </div>
 
+  <!-- 用于在main.js中获取用户信息 -->
   <div id="userinfo" style="display: none">{{ userinfo }}</div>
 
   <div class="wrapper">
-    
+    <!-- 输密码进入群聊 -->
     <section class="s1">
       <header>
         <h3>输入2019，进入群聊</h3>
@@ -102,6 +109,7 @@
       <center><a>进入该群</a></center>
     </section>
     
+    <!-- 对话正文 -->
     <section class="s2">
       <ul>
         <!-- delay 属性指当前话要停留多少秒 -->
@@ -709,6 +717,7 @@
       </ul>
     </section>
     
+    <!-- 底部输入框 -->
     <section class="s2input bgm_on">
       <input id="input_msg" placeholder="" maxlength="50">
       <button id="send_btn">
@@ -717,15 +726,6 @@
       <center></center>
     </section>
     
-    <section class="s2packet">
-      <center><a></a><a></a></center>
-    </section>
-    
   </div>
-
-  <!--loading-->
-  <!-- <div class="loading">
-    <center><i></i></center>
-  </div> -->
 </body>
 </html>
