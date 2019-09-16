@@ -1,0 +1,66 @@
+{%extends "scene_base.html"%}
+
+{% block content %}
+<script>
+document.title = '与世界会面';
+</script>
+<!-- 3、与世界会面 -->
+<li delay="1.5">
+  <h2 class="user2"></h2>
+  <p>现在让我们把时间调回到1971年，看一张老照片。</p>
+</li>
+<li delay="1.5">
+  <h2 class="user1"></h2>
+  <figure><img src="/static/img/重返联合国.png" width="90%"></figure>
+</li>
+<li delay="1.5" class="my">
+  <h2 class="user0"></h2>
+  <p>这不是中国代表团出席联合国大会的照片吗？</p>
+</li>
+<li delay="5.5">
+  <h2 class="user2"></h2>
+  <p>这位同学说得对。照片中是乔团长和代表团成员首次出席联合国大会记者拍下的。1971年11月1日，美国当地时间8时整，中华人民共和国的国旗和所有联合国的国旗按英文字母顺序被升起。联合国总部大厦门前的旗林里，第一次飘扬起了中华人民共和国的五星红旗。</p>
+</li>
+<li delay="6">
+  <h2 class="user2"></h2>
+  <figure>
+  <video controls="controls" style="width: 90%;">
+    <source src="http://pwvmh4cz5.bkt.clouddn.com/chongfanlianheguo.mp4" type="video/mp4" >
+  </video>
+  </figure>
+</li>
+<li delay="1.5">
+  <h2 class="user17"></h2>
+  <p>我看过相关历史，当时的胜利来之不易。</p>
+</li>
+<li delay="2.5">
+  <h2 class="user2"></h2>
+  <p>是的。“中国是联合国的创始成员国之一”，这句不到三秒钟就能够说完的话，我们花了22年才做到。</p>
+</li>
+<li delay="1.5">
+  <h2 class="user1"></h2>
+  <p>五星红旗能够顺利入驻联合国，前辈们太不容易了！</p>
+</li>
+<li delay="2.5" class="my">
+  <h2 class="user0"></h2>
+  <p>看着祖国一点点强大起来，赢得世界的认可和尊重，真是令人激动啊！</p>
+</li>
+<li delay="1.5">
+  <h2 class="user5"></h2>
+  <p>我们开始做题目吧~@小百科</p>
+</li>
+<li delay="1.5" id="question5" href="question">
+  <h2 class="user7"></h2>
+  <p>
+    你知道这是中华人民共和国在多少年后进入联合国吗？（输入字母即可）
+    <br><br>
+    A 20年
+    <br>
+    B 22年
+    <br>
+    C 21年
+  </p>
+</li>
+<li href="wait">
+</li>
+{% endblock %}

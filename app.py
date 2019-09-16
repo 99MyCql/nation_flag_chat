@@ -25,7 +25,7 @@ def index():
     url = source_url.format(APPID = config.APPID, REDIRECT_URI = config.REDIRECT_URI, SCOPE = config.SCOPE)
     return redirect(url) # 重定向
 
-# 第一步回调URL，主页面
+# 第一步回调URL，主页面(包含所有场景)
 @app.route('/home')
 def home():
     # 第二步：通过code获取 “网页授权access_token”
@@ -68,12 +68,15 @@ def home():
 @app.route('/choose')
 def choose():
     userinfo = session.get('userinfo')
+    print(userinfo)
     if userinfo != None:
         return render_template('choose.html')
 
     # 第二步：通过code获取 “网页授权access_token”
     code = request.args.get('code')
     print(code)
+    if code is None:
+        return redirect('/')
     source_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?'\
         +'appid={APPID}&secret={APPSECRET}&code={CODE}&grant_type=authorization_code'
     oauth2_url = source_url.format(APPID = config.APPID, APPSECRET = config.APPSECRET, CODE = code)
@@ -113,7 +116,7 @@ def scene1():
     if userinfo is None:
         return redirect('/') # 重定向
     else:
-        return render_template('scene1.html', userinfo = userinfo)
+        return render_template('scene1.html', userinfo = userinfo, title = '历史初登场')
 
 # 场景2界面
 @app.route('/scene2')
@@ -122,7 +125,52 @@ def scene2():
     if userinfo is None:
         return redirect('/') # 重定向
     else:
-        return render_template('scene2.html', userinfo = userinfo)
+        return render_template('scene2.html', userinfo = userinfo, title = '历史“最高峰”')
+
+# 场景3界面
+@app.route('/scene3')
+def scene3():
+    userinfo = session.get('userinfo')
+    if userinfo is None:
+        return redirect('/') # 重定向
+    else:
+        return render_template('scene3.html', userinfo = userinfo, title = '与世界会面')
+
+# 场景4界面
+@app.route('/scene4')
+def scene4():
+    userinfo = session.get('userinfo')
+    if userinfo is None:
+        return redirect('/') # 重定向
+    else:
+        return render_template('scene4.html', userinfo = userinfo, title = '红金色荣光')
+
+# 场景5界面
+@app.route('/scene5')
+def scene5():
+    userinfo = session.get('userinfo')
+    if userinfo is None:
+        return redirect('/') # 重定向
+    else:
+        return render_template('scene5.html', userinfo = userinfo, title = '七子初回归')
+
+# 场景6界面
+@app.route('/scene6')
+def scene6():
+    userinfo = session.get('userinfo')
+    if userinfo is None:
+        return redirect('/') # 重定向
+    else:
+        return render_template('scene6.html', userinfo = userinfo, title = '向宇宙进发')
+
+# 场景7界面
+@app.route('/scene7')
+def scene7():
+    userinfo = session.get('userinfo')
+    if userinfo is None:
+        return redirect('/') # 重定向
+    else:
+        return render_template('scene7.html', userinfo = userinfo, title = '中国香港人')
 
 # 升旗界面
 @app.route('/nation_flag')
