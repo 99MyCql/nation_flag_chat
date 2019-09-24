@@ -2,7 +2,7 @@ function question1(answer) {
   if (answer == '2') {
     $(".s2 li:hidden[href='wait']:first").remove();
     return `
-      <li delay="5.5">
+      <li delay="8">
         <h2 class="user18"></h2>
         <p>
         <b>【五星红旗的礼仪】</b>
@@ -18,7 +18,7 @@ function question1(answer) {
   } else if (answer == '1') {
     $(".s2 li:hidden[href='wait']:first").remove();
     return `
-      <li delay="5.5">
+      <li delay="8">
         <h2 class="user18"></h2>
         <p>
         <b>【五星红旗的设计内涵和制式规范】</b>
@@ -41,7 +41,7 @@ function question2(answer) {
   if (answer == 'B') {
     $(".s2 li:hidden[href='wait']:first").remove();
     return `
-      <li delay="5.5">
+      <li delay="5">
         <h2 class="user18"></h2>
         <p>
         回答正确！
@@ -73,7 +73,7 @@ function question3(answer) {
   if (answer == '1') {
     $(".s2 li:hidden[href='wait']:first").remove();
     return `
-      <li delay="7.5">
+      <li delay="10">
         <h2 class="user18"></h2>
         <p>
         <b>【登珠峰之险】</b>
@@ -87,11 +87,27 @@ function question3(answer) {
         所以北坡一直被西方登山界认为是“无法超越的”一条登顶之路。
         </p>
       </li>
+      <li delay="1.5" id="question3" href="question">
+        <h2 class="user7"></h2>
+        <p>
+          你还想具体了解哪一方面？
+          <br><br>
+          1.五星红旗的登顶之险
+          <br>
+          2.五星红旗的登顶成就
+          <br>
+          3.五星红旗的登顶意义
+          <br>
+          4.我都了解过啦，跳过
+        </p>
+      </li>
+      <li href="wait">
+      </li>
     `
   } else if (answer == '2') {
     $(".s2 li:hidden[href='wait']:first").remove();
     return `
-      <li delay="5.5">
+      <li delay="8">
         <h2 class="user18"></h2>
         <p>
         <b>【登顶成就】</b>
@@ -103,11 +119,27 @@ function question3(answer) {
         这次壮举是由三位年轻的中国登山队队员（王富洲、贡布、屈银华）完成的，他们集体登顶后在顶峰竖起红色测量觇标，经3天观测，精确计算出珠穆朗玛峰海拔高度为8848.13米。
         </p>
       </li>
+      <li delay="1.5" id="question3" href="question">
+        <h2 class="user7"></h2>
+        <p>
+          你还想具体了解哪一方面？
+          <br><br>
+          1.五星红旗的登顶之险
+          <br>
+          2.五星红旗的登顶成就
+          <br>
+          3.五星红旗的登顶意义
+          <br>
+          4.我都了解过啦，跳过
+        </p>
+      </li>
+      <li href="wait">
+      </li>
     `
   } else if (answer == '3') {
     $(".s2 li:hidden[href='wait']:first").remove();
     return `
-      <li delay="5.5">
+      <li delay="8">
         <h2 class="user18"></h2>
         <p>
         <b>【登顶意义】</b>
@@ -118,6 +150,22 @@ function question3(answer) {
         <br><br>
         而在当时的历史背景和物质条件下，登顶队员抱着必死的信念登顶，这种牺牲小我成就大我的精神，至今仍让人感念。
         </p>
+      </li>
+      <li delay="1.5" id="question3" href="question">
+        <h2 class="user7"></h2>
+        <p>
+          你还想具体了解哪一方面？
+          <br><br>
+          1.五星红旗的登顶之险
+          <br>
+          2.五星红旗的登顶成就
+          <br>
+          3.五星红旗的登顶意义
+          <br>
+          4.我都了解过啦，跳过
+        </p>
+      </li>
+      <li href="wait">
       </li>
     `
   } else if (answer == '4') {
@@ -130,7 +178,7 @@ function question4(answer) {
   if (answer == 'A') {
     $(".s2 li:hidden[href='wait']:first").remove();
     return `
-      <li delay="3.5">
+      <li delay="3">
         <h2 class="user18"></h2>
         <p>
         回答正确！
@@ -142,7 +190,7 @@ function question4(answer) {
   } else if (answer == 'B' || answer == 'C') {
     $(".s2 li:hidden[href='wait']:first").remove();
     return `
-      <li delay="3.5">
+      <li delay="3">
         <h2 class="user18"></h2>
         <p>
         回答错咯~
@@ -158,7 +206,7 @@ function question5(answer) {
   if (answer == 'B') {
     $(".s2 li:hidden[href='wait']:first").remove();
     return `
-      <li delay="3.5">
+      <li delay="5">
         <h2 class="user18"></h2>
         <p>
         回答正确！
@@ -172,7 +220,7 @@ function question5(answer) {
   } else if (answer == 'A' || answer == 'C') {
     $(".s2 li:hidden[href='wait']:first").remove();
     return `
-      <li delay="3.5">
+      <li delay="4">
         <h2 class="user18"></h2>
         <p>
         回答错咯~

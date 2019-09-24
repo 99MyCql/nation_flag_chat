@@ -120,7 +120,7 @@
 
 
 /***** s2 *****/
-.s2 { background: #ebebeb; padding-bottom: 13%;}
+.s2 { background: #ebebeb; padding-bottom: 13%;background-image: url('/static/img/weixin_home.jpg');background-position:center;background-size: contain;}
 .s2 ul { padding: 1.5em 1em 2em; }
 .s2 li { display: none; position: relative; padding: 1.3em 4em; }
 .s2 li:after { content: ""; display: block; clear: both; height: 0;}

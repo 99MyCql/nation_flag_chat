@@ -14,7 +14,7 @@ function getDM() {
 			console.log(list);
 			// 处理弹幕参数
 			for (let i = 0; i < list.length; i++) {
-				const speed = Math.random() / 5 + 0.25;
+				const speed = Math.random() / 5 + 0.1;
 				const bottom = Math.floor(Math.random() * 350) + 50;
 				const item = {
 					avatar_url: list[i].avatar_url,
@@ -101,12 +101,17 @@ function createDM(item, i) {
 	dmItem.style.bottom = item.bottom + "px";
 	let left = 100;
 	dmItem.style.left = left + "%";
+	let flag = false;
 	// 计时器
 	let timer = setInterval(function() {
+		if (flag == false && left < 0 && i % 10 == 9) {
+			flag = true;
+			page += 1;
+			getDM(); // 当过去一个弹幕后，再从后端获取十个
+		}
+		// 小于-100，完全离开屏幕
 		if (left < -100) {
 			clearInterval(timer); //终止定时器
-			page += 1;
-			getDM(); // 当过去十个弹幕后，再从后端获取十个
 		}
 		left += -item.speed;
 		dmItem.style.left = left + "%";

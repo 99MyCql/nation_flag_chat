@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>今日我们都是护旗手</title>
+  <title>我们都是护旗手</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.min.css') }}">
 </head>
 <style type="text/css">
@@ -66,11 +66,11 @@ body {
   display: none;
 }
 #title {
-    z-index: 10;
-    position: absolute;
-    top: 25%;
-    left: 25%;
-    width: 50%;
+  z-index: 10;
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 50%;
 }
 /* 按钮 */
 #button {
@@ -126,17 +126,21 @@ body {
   </div>
   <!-- loading -->
 
-  <img id="bg" src="http://pwvmh4cz5.bkt.clouddn.com/2.gif" class="bg none">
-  <img id="bg2" src="http://pwvmh4cz5.bkt.clouddn.com/3.png" class="bg red">
+  <div style="display: flex;align-items: center;background-color: white;position: fixed;top:0;bottom: 0;width: 100%;">
+    <video autoplay="autoplay" style="width: 100%;">
+      <source src="/static/video/升国旗.mp4" type="video/mp4" >
+    </video>
+  </div>
+
+  <!-- <img id="bg" src="http://qiniuyun.dounine.live/2.gif" class="bg none">
+  <img id="bg2" src="http://qiniuyun.dounine.live/3.png" class="bg red">
   <img id="title" src="/static/img/nation_flag_title.png">
   <img id="button" src="/static/img/nation_flag_btn.png" class="button animated infinite pulse delay-2s slow">
 
-  <!-- <img id="card" class="none" src="/static/img/旗手.png" style="animation: 1500ms linear 1000ms 1 normal both running zoomIn;"> -->
   <img id="add1" src="/static/img/nation_flag_add1.png" class="none animated fadeOutUp delay-3s slower">
-   <!--  -->
   <div id="result" class="none">
     <b>我是第 <span id="count">245666</span> 个护旗手</b>
-  </div>
+  </div> -->
 </body>
 
 <script src="/static/js/jquery-2.1.1.min.js"></script>
