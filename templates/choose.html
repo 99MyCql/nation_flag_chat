@@ -21,6 +21,9 @@ body {
   left: 0;
   z-index: 1000;
 }
+.none {
+  display: none;
+}
 .footer {
   width: 100%;
   position: absolute;
@@ -45,22 +48,26 @@ a {
   document.onreadystatechange=function(){
     console.log(document.readyState);
     if(document.readyState=="complete") {
+      console.log('complete');
       $(".loading").fadeOut();
+      $('#choose').removeClass('none');
     }
   }
   </script>
   <img class="loading" src="http://qiniuyun.dounine.live/weixin_home.jpg" alt="">
   <!-- loading -->
 
-  <a href="/scene1"><img class="card" src="/static/img/card/card1.png" alt=""></a>
-  <a href="/scene2"><img class="card" src="/static/img/card/card2.png" alt=""></a>
-  <a href="/scene3"><img class="card" src="/static/img/card/card3.png" alt=""></a>
-  <a href="/scene4"><img class="card" src="/static/img/card/card4.png" alt=""></a>
-  <a href="/scene5"><img class="card" src="/static/img/card/card5.png" alt=""></a>
-  <a href="/scene6"><img class="card" src="/static/img/card/card6.png" alt=""></a>
-  <a href="/scene7"><img class="card" src="/static/img/card/card7.png" alt=""></a>
+  <div id="choose" class="none">
+    <a href="/scene1"><img class="card" src="/static/img/card/card1.png" alt=""></a>
+    <a href="/scene2"><img class="card" src="/static/img/card/card2.png" alt=""></a>
+    <a href="/scene3"><img class="card" src="/static/img/card/card3.png" alt=""></a>
+    <a href="/scene4"><img class="card" src="/static/img/card/card4.png" alt=""></a>
+    <a href="/scene5"><img class="card" src="/static/img/card/card5.png" alt=""></a>
+    <a href="/scene6"><img class="card" src="/static/img/card/card6.png" alt=""></a>
+    <a href="/scene7"><img class="card" src="/static/img/card/card7.png" alt=""></a>
 
-  <img class="footer" src="/static/img/weixin_footer.png" alt="">
+    <img class="footer" src="/static/img/weixin_footer.png" alt="">
+  </div>
 
 <script>
 </script>
