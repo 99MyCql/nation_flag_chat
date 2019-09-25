@@ -281,6 +281,15 @@ $(function(){
       case 'question5':
         $(".s2 li:hidden:first").after(question5(msg));
         break;
+      case 'question6':
+        $(".s2 li:hidden:first").after(question6(msg));
+        break;
+      case 'question7':
+        $(".s2 li:hidden:first").after(question7(msg));
+        break;
+      case 'question8':
+        $(".s2 li:hidden:first").after(question8(msg));
+        break;
       default:
         break;
     }

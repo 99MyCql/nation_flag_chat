@@ -77,7 +77,7 @@
 .user18 { background-size: 100% 100%; background-image: url(../img/userimg/user18.jpg);}
 .user19 { background-size: 100% 100%; background-image: url('http://qiniuyun.dounine.live/user4.jpg');}
 .user20 { background-size: 100% 100%; background-image: url('http://qiniuyun.dounine.live/user15.jpg');}
-.user21 { background-size: 100% 100%; background-image: url('/static/img/userimg/明故宫.jpg');}
+.user21 { background-size: 100% 100%; background-image: url('/static/img/userimg/明故宫.png');}
 .user22 { background-size: 100% 100%; background-image: url('/static/img/userimg/将军路.jpg');}
 .user23 { background-size: 100% 100%; background-image: url('/static/img/userimg/天目湖.jpg');}
 
@@ -123,7 +123,7 @@
 
 
 /***** s2 *****/
-.s2 { background: #ebebeb; padding-bottom: 13%;background-image: url('http://qiniuyun.dounine.live/background2.png');background-position:center; background-attachment: fixed;}
+.s2 { background: #ebebeb; padding-bottom: 13%;background-image: url('http://qiniuyun.dounine.live/background2.png');background-position:center bottom; background-attachment: fixed;}
 .s2 ul { padding: 1.5em 1em 2em; }
 .s2 li { display: none; position: relative; padding: 1.3em 4em; }
 .s2 li:after { content: ""; display: block; clear: both; height: 0;}

@@ -16,15 +16,15 @@ $(function(){
   app.evtUp = app.isTouch?"touchend":"mouseup";
   app.evtClick = app.isTouch?"tap":"click";
 
-  
+
   /***** 音频 *****/
   app.sound = {};
   app.sound.mute = false;
   app.sound.msg = new Audio('/static/sound/msg.mp3');
   app.sound.bg = new Audio('/static/sound/bg.mp3');
   app.sound.bg._loop = true;
-  for(var i in app.sound){
-    if(!app.sound[i].play){ continue;  }
+  for(var i in app.sound) {
+    if(!app.sound[i].play) { continue; }
     app.sound[i]._play = app.sound[i].play;
     app.sound[i].play = function(){ !app.sound.mute && this._play(); }
     app.sound[i].addEventListener('ended', function(e){
@@ -32,12 +32,12 @@ $(function(){
     });
   }
 
-  $("body").one(app.evtDown, function(){
-    for(var i in app.sound){
-      if(!app.sound[i].load) continue;
-      app.sound[i].load();
-    }
-  });
+  // $("body").one(app.evtDown, function(){
+  //   for(var i in app.sound){
+  //     if(!app.sound[i].load) continue;
+  //     app.sound[i].load();
+  //   }
+  // });
 
   /***** 自适应 *****/
   // 源代码中需要以320px宽、500px高为标准进行设置
@@ -244,6 +244,7 @@ $(function(){
     videos[index].addEventListener('play', () => {
       console.log('play');
       stop = true;
+      app.sound.bg.pause();
     })
     // 暂停视频时，开始对话
     videos[index].addEventListener('pause', () => {
@@ -252,6 +253,7 @@ $(function(){
         if (stop == false) return;
         stop = false;
         playPage2();
+        app.sound.bg.play();
       }, 2000);
     })
   }
@@ -274,14 +276,14 @@ $(function(){
   });
 
   //静音按钮
-  $(".mute").on(app.evtClick, function() {
-    $(this).toggleClass('muted');
-    if($(this).hasClass('muted')){
-      app.sound.bg.pause();
-    }else{
-      app.sound.bg.play();
-    }
-  });
+  // $(".mute").on(app.evtClick, function() {
+  //   $(this).toggleClass('muted');
+  //   if($(this).hasClass('muted')){
+  //     app.sound.bg.pause();
+  //   }else{
+  //     app.sound.bg.play();
+  //   }
+  // });
 
 
   // 如果是微信内置浏览器打开，获取并设置用户信息

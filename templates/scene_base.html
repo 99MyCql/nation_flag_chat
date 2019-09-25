@@ -17,12 +17,12 @@
   <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/barrage.css') }}">
 
   <script type="text/javascript">
-    var app = { useSystemScroll: false };
+    // var app = { useSystemScroll: false };
 
     //此处修改用户头像
     headimgurl = "{{ userinfo.headimgurl }}";
 
-    window.addEventListener('touchmove', function(e){ !app.useSystemScroll && e.preventDefault(); }, false);
+    // window.addEventListener('touchmove', function(e){ !app.useSystemScroll && e.preventDefault(); }, false);
     window.addEventListener('load', function(){
       document.querySelector('body').style.fontSize = window.innerWidth/320*12+'px';
       appBegin();
