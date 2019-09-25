@@ -77,6 +77,9 @@
 .user18 { background-size: 100% 100%; background-image: url(../img/userimg/user18.jpg);}
 .user19 { background-size: 100% 100%; background-image: url('http://qiniuyun.dounine.live/user4.jpg');}
 .user20 { background-size: 100% 100%; background-image: url('http://qiniuyun.dounine.live/user15.jpg');}
+.user21 { background-size: 100% 100%; background-image: url('/static/img/userimg/明故宫.jpg');}
+.user22 { background-size: 100% 100%; background-image: url('/static/img/userimg/将军路.jpg');}
+.user23 { background-size: 100% 100%; background-image: url('/static/img/userimg/天目湖.jpg');}
 
 
 
@@ -120,7 +123,7 @@
 
 
 /***** s2 *****/
-.s2 { background: #ebebeb; padding-bottom: 13%;background-image: url('http://qiniuyun.dounine.live/background.png');background-position:center; background-attachment: fixed;}
+.s2 { background: #ebebeb; padding-bottom: 13%;background-image: url('http://qiniuyun.dounine.live/background2.png');background-position:center; background-attachment: fixed;}
 .s2 ul { padding: 1.5em 1em 2em; }
 .s2 li { display: none; position: relative; padding: 1.3em 4em; }
 .s2 li:after { content: ""; display: block; clear: both; height: 0;}
@@ -183,6 +186,9 @@
 .s2 li .user18:after { content: "小百科";}
 .s2 li .user19:after { content: "小动";}
 .s2 li .user20:after { content: "天天";}
+.s2 li .user21:after { content: "明故宫师哥";}
+.s2 li .user22:after { content: "将军路学子";}
+.s2 li .user23:after { content: "天目湖萌新";}
 
 .s2 li.my { padding-top: 0.1em;}
 .s2 li.my h2 { float: right; margin: 0 -4em 0 0; }

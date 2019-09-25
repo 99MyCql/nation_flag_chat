@@ -126,11 +126,16 @@ body {
   </div>
   <!-- loading -->
 
-  <div style="display: flex;align-items: center;background-color: white;position: fixed;top:0;bottom: 0;width: 100%;">
+  <div style="height:1000px;">
+    <img id="flag" src="/static/img/国企初稿.png" style="width: 300px;margin-top: 500px;">
+  </div>
+  <img id="btn" src="/static/img/btn.jpg" style="width: 200px">
+
+  <!-- <div style="display: flex;align-items: center;background-color: white;position: fixed;top:0;bottom: 0;width: 100%;">
     <video autoplay="autoplay" style="width: 100%;">
       <source src="http://qiniuyun.dounine.live/%E5%8D%87%E5%9B%BD%E6%97%97.mp4" type="video/mp4" >
     </video>
-  </div>
+  </div> -->
 
   <!-- <img id="bg" src="http://qiniuyun.dounine.live/2.gif" class="bg none">
   <img id="bg2" src="http://qiniuyun.dounine.live/3.png" class="bg red">
@@ -145,14 +150,40 @@ body {
 
 <script src="/static/js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript">
-$('#button').one('click', e => {
-  $('#bg').removeClass('none');
-  $('#bg2').removeClass('red');
-  $('#button').removeClass('animated');
-  $('#result').removeClass('none');
-  $('#add1').removeClass('none');
-  let old = parseInt($('#count').html());
-  $('#count').html(old+1);
+// $('#button').one('click', e => {
+//   $('#bg').removeClass('none');
+//   $('#bg2').removeClass('red');
+//   $('#button').removeClass('animated');
+//   $('#result').removeClass('none');
+//   $('#add1').removeClass('none');
+//   let old = parseInt($('#count').html());
+//   $('#count').html(old+1);
+// })
+
+// 按钮点击
+let timer;
+$('#btn').on({
+  touchstart: function(e){
+    console.log('touchstart');
+    timer = setInterval(function() {
+      let flag = document.getElementById('flag');
+      let top = parseInt(flag.style.marginTop.replace('px', ''));
+      console.log(top);
+      if (top <= 0) {
+        clearInterval(timer); //终止定时器
+        return;
+      }
+      flag.style.marginTop = top - 10 + 'px';
+      console.log(flag.style.marginTop);
+    }.bind(this), 20);
+  },
+  touchmove: function(){
+    console.log('touchmove');
+    clearInterval(timer); //终止定时器
+  },
+  touchend: function(e){
+    clearInterval(timer); //终止定时器
+  }
 })
 </script>
 </html>
