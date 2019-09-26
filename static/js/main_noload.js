@@ -175,9 +175,9 @@ $(function(){
     // 如果是留言祝福
     if ($(".s2 li:visible:last").attr('href') == 'bless') {
       sendDM(userinfo, msg);
-      $(".s2 li:hidden[href='wait']:first").remove();
-      stop = false;
-      playPage2();
+      // $(".s2 li:hidden[href='wait']:first").remove();
+      // stop = false;
+      // playPage2();
       return;
     }
 
