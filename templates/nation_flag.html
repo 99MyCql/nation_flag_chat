@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>我们都是护旗手</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.min.css') }}">
+  <link href="https://cdn.bootcss.com/animate.css/3.7.2/animate.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.min.css') }}"> -->
 </head>
 <style type="text/css">
 /* body */
@@ -52,13 +54,10 @@ body {
   20%{transform:scaleY(1) }
 }
 
-/* .bg {
+.bg {
   position: absolute;
   width:100%;
   height:100%;
-}
-.red {
-  background-color: red;
 }
 .none {
   display: none;
@@ -70,7 +69,7 @@ body {
   left: 25%;
   width: 50%;
 }
-#button {
+.button {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   position: absolute;
   top: 40%;
@@ -99,7 +98,7 @@ body {
   position: absolute;
   top: 57%;
   left: 45%;
-} */
+}
 .abso {
   position: absolute;
 }
@@ -113,6 +112,13 @@ body {
   document.onreadystatechange=function(){
     console.log(document.readyState);
     if(document.readyState=="complete") {
+      // 播放音乐
+      let bgm = new Audio('/static/sound/china.mp3');
+      bgm.play();
+      bgm.addEventListener('ended', function(e){
+        bgm.play();
+      });
+      // 加载页面退出
       $(".loading").fadeOut();
     }
   }
@@ -128,18 +134,21 @@ body {
   </div>
   <!-- loading -->
 
+  <img src="/static/img/raise_flag/bg2.gif" class="bg">
+
   <div id="s1">
-    <img class="abso resize" src="/static/img/flag_bg.jpg" style="width: 320px;height: 500px;">
-    <img class="abso resize" id="btn" src="/static/img/btn.png" style="width: 50px;height: 50px;bottom: 20px;right: 10px;">
-    <img class="abso resize" id="flag" src="/static/img/flag.jpg", style="width: 80px;height: 50px;top: 220px;left: 152px;">
+    <img class="bg" src="/static/img/raise_flag/bg1.png">
+    <img class="abso resize" id="btn" src="/static/img/raise_flag/btn.png" style="width: 50px;height: 50px;bottom: 20px;right: 10px;">
+    <img class="abso resize" id="flag" src="/static/img/raise_flag/flag.jpg", style="width: 80px;height: 50px;top: 220px;left: 152px;">
   </div>
 
-  <div id="s2" class="none animated fadeIn delay-3s slower">
-    <img class="abso resize" src="/static/img/flag_bg2.jpg" style="width: 320px;height: 500px;">
-    <div class="abso resize" style="font-size: 26px;top: 120px;left: 85px;color: yellow;text-align: center;">
-      五星红旗
-      <br>
-      你是我的骄傲
+  <div id="s2" class="none bg animated fadeIn delay-1s slower">
+    <img src="/static/img/raise_flag/bg3.png" class="bg">
+    <img id="title" src="/static/img/raise_flag/nation_flag_title.png">
+    <img src="/static/img/raise_flag/nation_flag_btn.png" class="button">
+    <img id="add1" src="/static/img/raise_flag/nation_flag_add1.png" class="animated fadeOutUp delay-3s slower">
+    <div id="result">
+      <b>我是第 <span id="count">25666</span> 个护旗手</b>
     </div>
   </div>
 
@@ -149,18 +158,13 @@ body {
     </video>
   </div> -->
 
-  <!-- <img id="bg" src="http://qiniuyun.dounine.live/2.gif" class="bg none">
-  <img id="bg2" src="http://qiniuyun.dounine.live/3.png" class="bg red">
-  <img id="title" src="/static/img/nation_flag_title.png">
-  <img id="button" src="/static/img/nation_flag_btn.png" class="button animated infinite pulse delay-2s slow">
-
-  <img id="add1" src="/static/img/nation_flag_add1.png" class="none animated fadeOutUp delay-3s slower">
-  <div id="result" class="none">
-    <b>我是第 <span id="count">245666</span> 个护旗手</b>
+  <!-- <img class="abso resize" src="/static/img/flag_bg2.jpg" style="width: 320px;height: 500px;">
+  <div class="abso resize" style="font-size: 26px;top: 120px;left: 85px;color: yellow;text-align: center;">
+    五星红旗
+    <br>
+    你是我的骄傲
   </div> -->
-</body>
 
-<script src="/static/js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript">
 // $('#button').one('click', e => {
 //   $('#bg').removeClass('none');
@@ -171,57 +175,56 @@ body {
 //   let old = parseInt($('#count').html());
 //   $('#count').html(old+1);
 // })
-/***** 自适应 *****/
-// 源代码中需要以320px宽、500px高为标准进行设置
-scaleW = window.innerWidth/320;
-scaleH = window.innerHeight/500;
-console.log(window.innerWidth, window.innerHeight);
+$(function() {
+  // 自适应：源代码中需要以320px宽、500px高为标准进行设置
+  scaleW = window.innerWidth/320;
+  scaleH = window.innerHeight/500;
+  console.log(window.innerWidth, window.innerHeight);
 
-var resizes = document.querySelectorAll('.resize');
+  var resizes = document.querySelectorAll('.resize');
 
-for (let j=0; j<resizes.length; j++) {
-  console.log(parseInt(resizes[j].style.width))
-  resizes[j].style.width=parseInt(resizes[j].style.width)*scaleW+'px';
-  resizes[j].style.height=parseInt(resizes[j].style.height)*scaleH+'px';
+  for (let j=0; j<resizes.length; j++) {
+    console.log(parseInt(resizes[j].style.width))
+    resizes[j].style.width=parseInt(resizes[j].style.width)*scaleW+'px';
+    resizes[j].style.height=parseInt(resizes[j].style.height)*scaleH+'px';
 
-  resizes[j].style.top=parseInt(resizes[j].style.top)*scaleH+'px';
-  resizes[j].style.left=parseInt(resizes[j].style.left)*scaleW+'px';
-  resizes[j].style.bottom=parseInt(resizes[j].style.bottom)*scaleH+'px';
-  resizes[j].style.right=parseInt(resizes[j].style.right)*scaleW+'px';
+    resizes[j].style.top=parseInt(resizes[j].style.top)*scaleH+'px';
+    resizes[j].style.left=parseInt(resizes[j].style.left)*scaleW+'px';
+    resizes[j].style.bottom=parseInt(resizes[j].style.bottom)*scaleH+'px';
+    resizes[j].style.right=parseInt(resizes[j].style.right)*scaleW+'px';
 
-  resizes[j].style.fontSize=parseInt(resizes[j].style.fontSize)*scaleW+'px';
-  resizes[j].style.lineHeight=parseInt(resizes[j].style.lineHeight)*scaleH+'px';
-}
-
-let bg = new Audio('/static/sound/china.mp3');
-bg.play();
-
-// 点击升旗按钮
-let timer;
-$('#btn').on({
-  touchstart: function(e){
-    console.log('touchstart');
-    timer = setInterval(function() {
-      let flag = document.getElementById('flag');
-      let top = parseInt(flag.style.top);
-      console.log(top);
-      if (top <= 90) {
-        clearInterval(timer); //终止定时器
-        $('#s1').addClass('none');
-        $('#s2').removeClass('none');
-        return;
-      }
-      flag.style.top = top - 2 + 'px';
-      console.log(flag.style.top);
-    }.bind(this), 20);
-  },
-  touchmove: function(){
-    console.log('touchmove');
-    clearInterval(timer); //终止定时器
-  },
-  touchend: function(e){
-    clearInterval(timer); //终止定时器
+    resizes[j].style.fontSize=parseInt(resizes[j].style.fontSize)*scaleW+'px';
+    resizes[j].style.lineHeight=parseInt(resizes[j].style.lineHeight)*scaleH+'px';
   }
+
+  // 点击升旗按钮
+  let timer;
+  $('#btn').on({
+    touchstart: function(e){
+      console.log('touchstart');
+      timer = setInterval(function() {
+        let flag = document.getElementById('flag');
+        let top = parseInt(flag.style.top);
+        console.log(top);
+        if (top <= 90) {
+          clearInterval(timer); //终止定时器
+          $('#s1').addClass('none');
+          $('#s2').removeClass('none');
+          return;
+        }
+        flag.style.top = top - 2 + 'px';
+        console.log(flag.style.top);
+      }.bind(this), 20);
+    },
+    touchmove: function(){
+      console.log('touchmove');
+      clearInterval(timer); //终止定时器
+    },
+    touchend: function(e){
+      clearInterval(timer); //终止定时器
+    }
+  })
 })
 </script>
+</body>
 </html>
