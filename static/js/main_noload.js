@@ -20,8 +20,8 @@ $(function(){
   /***** 音频 *****/
   app.sound = {};
   app.sound.mute = false;
-  app.sound.msg = new Audio('/static/sound/msg.mp3');
-  app.sound.bg = new Audio('/static/sound/bg.mp3');
+  app.sound.msg = new Audio('http://qiniuyun.dounine.live/sound/msg.mp3');
+  app.sound.bg = new Audio('http://qiniuyun.dounine.live/sound/bg.mp3');
   app.sound.bg._loop = true;
   for(var i in app.sound) {
     if(!app.sound[i].play) { continue; }
@@ -315,9 +315,9 @@ $(function(){
     get_wx_config();
     var linkurl_wx = "http://dev2.dounine.live/";
     var linkurl_other = "http://dev2.dounine.live/";
-    var title = "我们都是护旗手";
-    var title_other = "我们都是护旗手";
-    var des = "我们都是护旗手";
+    var title = "我们都是升旗手";
+    var title_other = "我们都是升旗手";
+    var des = "我们都是升旗手";
     var imgurl300 = "/static/img/logo.ico";
     var imgurl120 = "/static/img/logo.ico"
     app.wx_config = {
