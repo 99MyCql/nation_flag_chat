@@ -31,7 +31,13 @@ config file
 HOST = '0.0.0.0'
 PORT = 80
 DEBUG = True # 是否开启调试环境
+
+# session configuration
 SECRET_KEY = os.urandom(24) # setup the SECRET_KEY of the session. create a random string whose length is 24 by urandom
+SESSION_TYPE = 'redis' #session存储格式为redis
+SESSION_USE_SIGNER = True #是否强制加盐，混淆session
+SESSION_PERMANENT = False #sessons是否长期有效，false，则关闭浏览器，session失效
+PERMANENT_SESSION_LIFETIME = 7200 #session长期有效，则设定session生命周期，整数秒，默认大概不到3小时。
 
 # 微信公众号配置
 APPID = 'xxxxxxx' # 公众号ID

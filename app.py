@@ -4,6 +4,7 @@ from models import db, Barrage, UserRecord
 import config
 import requests
 from sign import Sign
+from flask_session import Session
 from redis import Redis
 
 # 初始化flask实例
@@ -14,7 +15,12 @@ app.config.from_object(config) # 从配置模块中导入配置
 db.init_app(app)
 
 # 初始化redis实例变量
-op_redis = Redis(host=config.REDIS_HOST, port=config.REDIS_PORT, password=config.REDIS_PASSWD)
+redis = Redis(host=config.REDIS_HOST, port=config.REDIS_PORT, password=config.REDIS_PASSWD)
+
+# 为session传入redis实例
+app.config['SESSION_REDIS'] = redis
+Session(app)
+
 
 @app.route('/')
 def index():
@@ -83,12 +89,15 @@ def choose():
     if code is None:
         return redirect('/')
     get_wx_userinfo(code)
-    return render_template('choose.html')
+    # raise_flag = session.get('raise_flag')
+    # return render_template('choose.html', raise_flag = raise_flag)
+    first = session.get('first')
+    return render_template('choose.html', first = first)
 
 # 场景准备函数
 #   @view: 返回的页面
 #   @title: 页面标题
-def scene_handler(view, title):
+def scene_handler(view):
     userinfo = session.get('userinfo')
     if userinfo is None:
         return redirect('/') # 重定向
@@ -96,51 +105,52 @@ def scene_handler(view, title):
         first = session.get('first')
         if first is None:
             session['first'] = 'no'
-        return render_template(view, userinfo = userinfo, title = title, first = first)
+        return render_template(view, userinfo = userinfo, first = first)
 
 # 场景1界面
 @app.route('/scene1')
 def scene1():
-    return scene_handler('scene1.html', '历史初登场')
+    return scene_handler('scene1.html')
 
 # 场景2界面
 @app.route('/scene2')
 def scene2():
-    return scene_handler('scene2.html', '历史“最高峰”')
+    return scene_handler('scene2.html')
 
 # 场景3界面
 @app.route('/scene3')
 def scene3():
-    return scene_handler('scene3.html', '与世界会面')
+    return scene_handler('scene3.html')
 
 # 场景4界面
 @app.route('/scene4')
 def scene4():
-    return scene_handler('scene4.html', '红金色荣光')
+    return scene_handler('scene4.html')
 
 # 场景5界面
 @app.route('/scene5')
 def scene5():
-    return scene_handler('scene5.html', '七子初回归')
+    return scene_handler('scene5.html')
 
 # 场景6界面
 @app.route('/scene6')
 def scene6():
-    return scene_handler('scene6.html', '向宇宙进发')
+    return scene_handler('scene6.html')
 
 # 场景7界面
 @app.route('/scene7')
 def scene7():
-    return scene_handler('scene7.html', '中国香港加油')
+    return scene_handler('scene7.html')
 
 # 场景8界面
 @app.route('/scene8')
 def scene8():
-    return scene_handler('scene8.html', '升国旗')
+    return scene_handler('scene8.html')
 
 # 升旗界面
 @app.route('/nation_flag')
 def nation_flag():
+    # session['raise_flag'] = True
     return render_template('nation_flag.html')
 
 
@@ -153,8 +163,8 @@ api接口
 def get_wx_config():
     url = request.form.get('url')
 
-    cgi_bin_access_token = op_redis.get('cgi_bin_access_token')
-    jsapi_ticket = op_redis.get('jsapi_ticket')
+    cgi_bin_access_token = redis.get('cgi_bin_access_token')
+    jsapi_ticket = redis.get('jsapi_ticket')
     print('------>', cgi_bin_access_token, jsapi_ticket)
 
     if cgi_bin_access_token is None or jsapi_ticket is None:
@@ -165,7 +175,7 @@ def get_wx_config():
         data = eval(resp.text) # 将字符串转为字典
         print(data)
         cgi_bin_access_token = data['access_token']
-        op_redis.set('cgi_bin_access_token', cgi_bin_access_token, ex=data['expires_in'])
+        redis.set('cgi_bin_access_token', cgi_bin_access_token, ex=data['expires_in'])
 
         # 第二步：获取 jsapi_ticket
         source_url = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={ACCESS_TOKEN}&type=jsapi'
@@ -174,7 +184,7 @@ def get_wx_config():
         data = eval(resp.text) # 将字符串转为字典
         print(data)
         jsapi_ticket = data['ticket']
-        op_redis.set('jsapi_ticket', jsapi_ticket, ex=data['expires_in'])
+        redis.set('jsapi_ticket', jsapi_ticket, ex=data['expires_in'])
 
     # 第三步：签名算法
     # noncestr=Wm3WZYTPz0wzccnW

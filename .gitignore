@@ -3,6 +3,7 @@ nohup.out
 *.mp4
 !杨利伟太空祝福.mp4
 config.py
+*.zip
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
