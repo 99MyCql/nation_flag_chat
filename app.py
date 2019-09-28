@@ -103,6 +103,7 @@ def scene_handler(view):
         return redirect('/') # 重定向
     else:
         first = session.get('first')
+        print(first)
         if first is None:
             session['first'] = 'no'
         return render_template(view, userinfo = userinfo, first = first)

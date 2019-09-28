@@ -83,8 +83,7 @@ a {
   border-radius: 1.5em;
   box-shadow: rgba(0,0,0,0.3) 1.2em 1.2em 1.2em;
   background-image: url('http://qiniuyun.dounine.live/background3.png');
-  background-position: left bottom;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .alert>article header {
   padding: 3vh 5vw;
@@ -162,14 +161,14 @@ a {
         bgm.addEventListener('ended', function(e){
           bgm.play();
         });
-        {% if not first %}
         // 显示弹框
-        myAlert('五星红旗是国家的象征，也是我们的骄傲。在举国同庆共和国七十华诞之际，让我们一起回顾她的几个难忘瞬间，重温历史、感受光荣，同升国旗、共庆华诞。','');
-        {% endif %}
+        console.log($('#first').text());
+        if ($('#first').text() == 'None') myAlert('五星红旗是国家的象征，也是我们的骄傲。在举国同庆共和国七十华诞之际，让我们一起回顾她的几个难忘瞬间，重温历史、感受光荣，同升国旗、共庆华诞。','');
       }, 500);
     }
   }
   </script>
+  <div id="first" style="display: none;">{{ first }}</div>
   <img class="loading" src="http://qiniuyun.dounine.live/weixin_home.jpg" alt="">
   <!-- loading -->
 
