@@ -151,6 +151,7 @@ def scene8():
 @app.route('/nation_flag')
 def nation_flag():
     # session['raise_flag'] = True
+    session['first'] = None
     return render_template('nation_flag.html')
 
 
