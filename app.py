@@ -21,7 +21,6 @@ redis = Redis(host=config.REDIS_HOST, port=config.REDIS_PORT, password=config.RE
 app.config['SESSION_REDIS'] = redis
 Session(app)
 
-
 @app.route('/')
 def index():
     # 第一步：后端重定位到微信提供的接口URL，让用户同意授权后，微信服务器会跳转到回调地址并携带code参数
