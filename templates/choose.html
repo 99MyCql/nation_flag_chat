@@ -44,17 +44,23 @@ a {
   text-decoration: none;
 }
 .raise_flag_btn {
-  border-radius: 50%;
-  background-color: #ff0000;
-  height: 100px;
-  width: 100px;
+  /* border-radius: 50%;
+  background-color: #ff0000; */
+  /* height: 10%; */
+  width: 15%;
   padding: 2%;
   position: absolute;
   right: 5%;
-  bottom: 12%;
-  display: flex;
+  bottom: 13%;
+  /* display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
+  animation: move 1.5s infinite alternate;/*动画名称 运动时间 运动次数infinite表示无限次 alternate往返效果相同*/
+}
+@keyframes move {
+  100%{
+    transform: scale(1.2);/*变大1.2倍*/
+  }
 }
 .raise_flag_font {
   color: #ebebeb;
@@ -186,9 +192,10 @@ a {
   </div>
 
   <a href="/nation_flag">
-    <div class="raise_flag_btn animated bounce slower infinite">
+    <img class="raise_flag_btn" src="/static/img/raise_flag_btn.png" alt="">
+    <!-- <div class="raise_flag_btn animated bounce slower infinite">
       <div class="raise_flag_font">我要升旗</div>
-    </div>
+    </div> -->
   </a>
 
 <script>
