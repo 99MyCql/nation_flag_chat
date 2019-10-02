@@ -33,11 +33,11 @@ PORT = 80
 DEBUG = True # 是否开启调试环境
 
 # session configuration
-SECRET_KEY = os.urandom(24) # setup the SECRET_KEY of the session. create a random string whose length is 24 by urandom
-SESSION_TYPE = 'redis' #session存储格式为redis
-SESSION_USE_SIGNER = True #是否强制加盐，混淆session
-SESSION_PERMANENT = False #sessons是否长期有效，false，则关闭浏览器，session失效
-PERMANENT_SESSION_LIFETIME = 7200 #session长期有效，则设定session生命周期，整数秒，默认大概不到3小时。
+SECRET_KEY = os.urandom(24) # 密钥
+SESSION_TYPE = 'redis' # session存储格式为redis
+SESSION_USE_SIGNER = True # 是否对发送到浏览器上session的cookie值进行加密
+SESSION_PERMANENT = True # 如果设置为False，则关闭浏览器session就失效；如果True，则长期有效
+PERMANENT_SESSION_LIFETIME = 1200 # 如果设置session长期有效，则设定session生命周期，整数秒
 
 # 微信公众号配置
 APPID = 'xxxxxxx' # 公众号ID
@@ -66,8 +66,14 @@ FAIL = 1
 ERROR = 2
 ```
 
+### 微信测试号配置
+
+需要在测试号中，配置`JS接口安全域名`和`网页授权获取用户基本信息 - 回调域名`为`127.0.0.1`。
+
 ### 启动
 
 ```bash
 python app.py
 ```
+
+然后在 微信web开发者工具 中访问`http://127.0.0.1`即可。
